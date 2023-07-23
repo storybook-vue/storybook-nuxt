@@ -1,19 +1,18 @@
 {
   "name": "@storybook-vue/nuxt",
-  "version": "0.0.1-alpha.0",
-  "description": "Storybook for Nuxt and Vite: Develop Vue3 components in isolation with Hot Reloading.",
+  "version": "0.0.1-alpha.3",
+  "description": "Storybook for Nuxt and Vite: Develop and Test your Vue3 components in your Nuxt app. ",
   "keywords": [
     "storybook",
     "nuxt"
   ],
-  "homepage": "https://github.com/storybookjs/storybook/tree/next/code/frameworks/vue3-vite",
+  "homepage": "https://github.com/storybook-vue/nuxt",
   "bugs": {
     "url": "https://github.com/storybookjs/storybook/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/storybookjs/storybook.git",
-    "directory": "code/frameworks/nuxt"
+    "url": "https://github.com/storybook-vue/nuxt.git"
   },
   "funding": {
     "type": "opencollective",
