@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 
 // https://storybook.js.org/docs/react/addons/writing-presets
-import { dirname, join } from 'path';
+import {  join } from 'path';
 import type { PresetProperty } from '@storybook/types';
 import { mergeConfig, type UserConfig as ViteConfig } from 'vite';
 import { viteFinal as vue3ViteFinal } from '@storybook/vue3-vite/preset';
@@ -21,7 +21,7 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
     throw new Error(`Storybook-Nuxt does not support '${nuxt.options.builder}'.`);
   }
 
-  const resolver = createResolver(import.meta.url || __dirname);
+  const resolver = createResolver( __dirname);
   const runtimeDir = resolver.resolve('../runtime');
   nuxt.options.build.transpile.push(runtimeDir);
   nuxt.options.alias['~storybook'] = runtimeDir;
@@ -55,19 +55,10 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
     nuxt,
   };
 }
-export const core: PresetProperty<'core', StorybookConfig> = async (config, options) => {
-  return {
-    ...config,
-    builder: {
-      name: dirname(
-        require.resolve(join('@storybook/builder-vite', 'package.json'))
-      ) as '@storybook/builder-vite',
-      options: {},
-    },
-    framework: '@storybook/nuxt',
-    renderer: dirname(require.resolve(join('@storybook/vue3', 'package.json'))),
-  };
-};
+export const core: PresetProperty<any> = {
+  builder: "@storybook/builder-vite",
+  renderer: "@storybook/vue3",
+}
 /**
  *
  * @param entry preview entries
