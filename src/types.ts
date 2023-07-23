@@ -3,7 +3,6 @@ import type {
   StorybookConfig as StorybookVueViteConfig,
 } from '@storybook/vue3-vite';
 import type { StorybookConfig as StorybookConfigBase } from '@storybook/types';
-import type { UserConfig as ViteConfig } from 'vite';
 
 type FrameworkName = '@storybook/nuxt';
 type BuilderName = '@storybook/builder-vite';
@@ -34,7 +33,7 @@ type StorybookConfigFramework = {
 /**
  * The interface for Storybook configuration in `main.ts` files.
  */
-export type StorybookConfig = StorybookVueViteConfig & ViteConfig & StorybookConfigFramework;
+export type StorybookConfig = StorybookVueViteConfig & StorybookConfigFramework;
 
 export interface NuxtOptions {
   enableIvy?: boolean;

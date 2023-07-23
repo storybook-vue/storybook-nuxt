@@ -25,6 +25,7 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
   const runtimeDir = resolver.resolve('../runtime');
   nuxt.options.build.transpile.push(runtimeDir);
   nuxt.options.alias['~storybook'] = runtimeDir;
+
   return {
     viteConfig: await new Promise<ViteConfig>((resolve, reject) => {
       nuxt.hook('modules:done', () => {
