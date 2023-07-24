@@ -1,6 +1,7 @@
 # Storybook for Nuxt framework <!-- omit in toc -->
 
-![sb-nuxt (1)](https://github.com/storybook-vue/nuxt/assets/711292/0a4d0712-cd9a-454d-956f-3e4fbaace436)
+
+![sb-nuxt (2)](https://github.com/storybook-vue/nuxt/assets/711292/6cd06c77-1b6e-4a45-9666-a97d091a27c0)
 
 
 Storybook package for nuxt framework zero config. seamless integratio supporting all Nuxt fancy features 
