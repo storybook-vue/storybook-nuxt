@@ -65,7 +65,6 @@ Update your `main.js` to change the framework property:
 export default {
   // ...
   framework: {
-    // name: '@storybook/react-webpack5', // Remove this
     name: '@storybook-vue/nuxt', // Add this
     options: {},
   },
