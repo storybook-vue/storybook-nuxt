@@ -55,7 +55,7 @@ npx storybook@latest init
 
 #### Automatic migration
 
-When running the `upgrade` command above, you should get a prompt asking you to migrate to `@storybook/nuxt`, which should handle everything for you. In case that auto-migration does not work for your project, refer to the manual migration below.
+When running the `upgrade` command above, you should get a prompt asking you to migrate to `@storybook/nuxt`, which should handle everything for you. In case auto-migration does not work for your project, refer to the manual migration below.
 
 
 
@@ -80,7 +80,11 @@ In progress
 
 This repository is licensed under the [MIT License](LICENSE). Feel free to use the code and modify it according to your needs.
 
-##Contacts
+## Contacts :
+
 🔖 Mail: javachakir@gmail.com
+
 💬 Discord:chakAs3
+
 🐦‍⬛ Twitter: [@ChakirQatab](https://twitter.com/ChakirQatab)
+
