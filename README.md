@@ -3,8 +3,13 @@
 ![sb-nuxt (1)](https://github.com/storybook-vue/nuxt/assets/711292/0a4d0712-cd9a-454d-956f-3e4fbaace436)
 
 
-
 Storybook package for nuxt framework zero config. seamless integratio supporting all Nuxt fancy features 
+
+
+
+https://github.com/storybook-vue/nuxt/assets/711292/e66a1899-ab7c-42dd-b358-59e22ff0f609
+
+
 
 ## Supported Features
 
