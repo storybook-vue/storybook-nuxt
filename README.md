@@ -1,6 +1,16 @@
 # Storybook for Nuxt framework <!-- omit in toc -->
 
+
+![sb-nuxt (2)](https://github.com/storybook-vue/nuxt/assets/711292/6cd06c77-1b6e-4a45-9666-a97d091a27c0)
+
+
 Storybook package for nuxt framework zero config. seamless integratio supporting all Nuxt fancy features 
+
+
+
+https://github.com/storybook-vue/nuxt/assets/711292/e66a1899-ab7c-42dd-b358-59e22ff0f609
+
+
 
 ## Supported Features
 
@@ -56,7 +66,6 @@ Update your `main.js` to change the framework property:
 export default {
   // ...
   framework: {
-    // name: '@storybook/react-webpack5', // Remove this
     name: '@storybook-vue/nuxt', // Add this
     options: {},
   },
