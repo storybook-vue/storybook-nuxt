@@ -75,3 +75,12 @@ export default {
 ## Documentation
 
 In progress
+
+## License
+
+This repository is licensed under the [MIT License](LICENSE). Feel free to use the code and modify it according to your needs.
+
+##Contacts
+🔖 Mail: javachakir@gmail.com
+💬 Discord:chakAs3
+🐦‍⬛ Twitter: [@ChakirQatab](https://twitter.com/ChakirQatab)
