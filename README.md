@@ -4,7 +4,7 @@
 ![sb-nuxt (2)](https://github.com/storybook-vue/nuxt/assets/711292/6cd06c77-1b6e-4a45-9666-a97d091a27c0)
 
 
-Storybook package for nuxt framework zero config. seamless integratio supporting all Nuxt fancy features 
+Storybook package for [**Nuxt framework**](https://nuxt.com/) with zero configs. seamless integration supporting all Nuxt fancy features 
 
 
 
@@ -14,9 +14,9 @@ https://github.com/storybook-vue/nuxt/assets/711292/e66a1899-ab7c-42dd-b358-59e2
 
 ## Supported Features
 
-👉 [Nuxt Modules](#nextjss-image-component)
+👉 [Nuxt Modules](#nuxts-image-component)
 
-👉 [Nuxt Plugins](#nextjs-font-optimization)
+👉 [Nuxt Plugins](#nuxt-font-optimization)
 
 👉 [All in-built Nuxt Components](#nuxt-components)
 
@@ -55,7 +55,7 @@ npx storybook@latest init
 
 #### Automatic migration
 
-When running the `upgrade` command above, you should get a prompt asking you to migrate to `@storybook/nextjs`, which should handle everything for you. In case that auto-migration does not work for your project, refer to the manual migration below.
+When running the `upgrade` command above, you should get a prompt asking you to migrate to `@storybook/nuxt`, which should handle everything for you. In case that auto-migration does not work for your project, refer to the manual migration below.
 
 
 
