@@ -1,1 +1,0 @@
-declare module '@storybook/vue3-vite/preset';

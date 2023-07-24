@@ -1,7 +1,5 @@
 /* eslint-disable import/no-unresolved */
-
-// https://storybook.js.org/docs/react/addons/writing-presets
-import {  join } from 'path';
+import { dirname, join } from 'path';
 import type { PresetProperty } from '@storybook/types';
 import { mergeConfig, type UserConfig as ViteConfig } from 'vite';
 import { viteFinal as vue3ViteFinal } from '@storybook/vue3-vite/preset';
@@ -18,10 +16,10 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
   });
 
   if ((nuxt.options.builder as string) !== '@nuxt/vite-builder') {
-    throw new Error(`Storybook-Nuxt does not support '${nuxt.options.builder}'.`);
+    throw new Error(`Storybook-Nuxt does not support '${nuxt.options.builder}' for now.`);
   }
 
-  const resolver = createResolver( __dirname);
+  const resolver = createResolver(import.meta.url || __dirname);
   const runtimeDir = resolver.resolve('../runtime');
   nuxt.options.build.transpile.push(runtimeDir);
   nuxt.options.alias['~storybook'] = runtimeDir;
@@ -55,10 +53,19 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
     nuxt,
   };
 }
-export const core: PresetProperty<any> = {
-  builder: "@storybook/builder-vite",
-  renderer: "@storybook/vue3",
-}
+export const core: PresetProperty<'core', StorybookConfig> = async (config, options) => {
+  return {
+    ...config,
+    builder: {
+      name: dirname(
+        require.resolve(join('@storybook/builder-vite', 'package.json'))
+      ) as '@storybook/builder-vite',
+      options: {},
+    },
+    framework: '@storybook/nuxt',
+    renderer: dirname(require.resolve(join('@storybook/vue3', 'package.json'))),
+  };
+};
 /**
  *
  * @param entry preview entries
@@ -72,10 +79,10 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
   config: Record<string, any>,
   options: any
 ) => {
+    console.log({ config, options })
   const nuxtConfig = await configureNuxtVite(await vue3ViteFinal(config, options));
   return mergeConfig(nuxtConfig.viteConfig, {
     build: { rollupOptions: { external: ['vue'] } },
-
     define: {
       __NUXT__: JSON.stringify({ config: nuxtConfig.nuxt.options.runtimeConfig }),
     },

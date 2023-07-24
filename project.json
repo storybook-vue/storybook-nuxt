@@ -1,5 +1,6 @@
 {
-  "name": "@storybook-vue/nuxt",
+  "name": "@storybook/nuxt",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "implicitDependencies": [],
   "type": "library"
 }
