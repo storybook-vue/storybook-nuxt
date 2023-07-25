@@ -1,6 +1,6 @@
 {
   "name": "@storybook-vue/nuxt",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-rc.1",
   "description": "Storybook for Nuxt and Vite: Develop Vue3 components in isolation with Hot Reloading.",
   "keywords": [
     "storybook",
@@ -22,22 +22,28 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "node": "./dist/index.js",
-      "require": "./dist/index.js",
+      "node": "./dist/index.cjs",
+      "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
     },
     "./preset": {
       "types": "./dist/preset.d.ts",
-      "require": "./dist/preset.js"
+      "require": "./dist/preset.cjs"
+    },
+    "./dist/preview.cjs": {
+      "types": "./dist/preview.d.ts",
+      "require": "./dist/preview.cjs",
+      "import": "./dist/preview.mjs"
     },
     "./preview.js": {
       "types": "./dist/preview.d.ts",
-      "require": "./dist/preview.js",
-      "import": "./dist/preview.mjs"
+      "require": "./dist/preview.cjs",
+      "import": "./dist/preview.mjs",
+      "default": "./dist/preview.cjs"
     },
     "./package.json": "./package.json"
   },
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
@@ -48,14 +54,14 @@
     "*.d.ts"
   ],
   "scripts": {
-    "check": "../../../scripts/node_modules/.bin/tsc --noEmit",
-    "prep": "../../../scripts/prepare/bundle.ts"
+    "build": "unbuild",
+		"test": "vitest run"
   },
   "dependencies": {
     "@nuxt/kit": "^3.6.5",
+    "@nuxt/schema": "^3.6.5",
     "@nuxt/vite-builder": "^3.6.3",
     "@storybook/builder-vite": "7.1.0-rc.1",
-    "@storybook/vue3": "7.1.0-rc.1",
     "@storybook/vue3-vite": "7.1.0-rc.1",
     "autoprefixer": "^10.4.14",
     "nuxt": "^3.6.5",
@@ -64,10 +70,13 @@
     "postcss-url": "^10.1.3"
   },
   "devDependencies": {
+    "@storybook/types":"7.1.0-rc.1",
     "@types/node": "^16.0.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
-    "typescript": "^4.9.3"
+    "unbuild": "1.2.1",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0"
   },
   "peerDependencies": {
     "nuxt": "^3.6.5",

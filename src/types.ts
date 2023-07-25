@@ -1,7 +1,7 @@
-import type { StorybookConfig as StorybookVueViteConfig } from '@storybook/vue3-vite';
+
 import type { BuilderOptions, StorybookConfig as StorybookConfigBase } from '@storybook/types';
 
-type FrameworkName = '@storybook/nuxt';
+type FrameworkName = '@storybook-vue/nuxt';
 type BuilderName = '@storybook/builder-vite';
 
 export type FrameworkOptions = NuxtOptions & {
@@ -9,20 +9,8 @@ export type FrameworkOptions = NuxtOptions & {
 };
 
 type StorybookConfigFramework = {
-  framework:
-    | FrameworkName
-    | {
-        name: FrameworkName;
-        options: FrameworkOptions;
-      };
-  core?: StorybookConfigBase['core'] & {
-    builder?:
-      | BuilderName
-      | {
-          name: BuilderName;
-          options: BuilderOptions;
-        };
-  };
+  framework: FrameworkName
+  core?: StorybookConfigBase['core'] & { builder?: BuilderName  }  
   typescript?: StorybookConfigBase['typescript'];
   previewAnnotations?: StorybookConfigBase['previewAnnotations'];
 };
@@ -30,9 +18,7 @@ type StorybookConfigFramework = {
 /**
  * The interface for Storybook configuration in `main.ts` files.
  */
-export type StorybookConfig = StorybookVueViteConfig & StorybookConfigFramework;
+export type StorybookConfig = { viteFinal:Record<string, any>  } & StorybookConfigFramework;
 
 export interface NuxtOptions {
-  enableIvy?: boolean;
-  enableNgcc?: boolean;
 }

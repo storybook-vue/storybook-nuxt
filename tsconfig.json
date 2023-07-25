@@ -1,72 +1,13 @@
 {
-  "compileOnSave": false,
+  "extends": "./.storybook/tsconfig.json",
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
-    "lib": ["es2020", "dom", "dom.iterable"],
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "declaration": true,
-    "outDir": "dist",
+    "rootDir": "./src",
+    "target": "ESNext",
+    "module": "ESNext",
     "types": ["node"],
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "allowJs": true,
-    "pretty": true,
-    "noErrorTruncation": true,
-    "listEmittedFiles": false,
-    "noUnusedLocals": false,
-
-    "ignoreDeprecations": "5.0",
-    "baseUrl": ".",
-    "incremental": false,
-    "noImplicitAny": true,
-    "forceConsistentCasingInFileNames": true,
-
-
-
-    "moduleResolution": "Node",
-
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "strict": false,
-    
-
-    "noEmit": true,
-    "paths":{
-      "#app": [
-        "./node_modules/nuxt/dist/app"
-      ],
-      "#app/*": [
-        "./node_modules/nuxt/dist/app/*"
-      ],
-    },
-
-    "rootDir": "./src",
-
+    "strict": true
   },
-  "exclude": [
-    "dist",
-    "**/dist",
-    "node_modules",
-    "**/node_modules",
-    "**/setup-jest.ts"
-  ],
-  "include": [
-    "src/**/*",
-    "src/**/*.json",
-    "./node_modules/nuxt/dist/app",
-    "./node_modules/nuxt/dist/app/*"
-  ]
-  ,
-  "ts-node": {
-    "transpileOnly": true,
-    "files": true,
-    "compilerOptions": {
-      "types": [
-        "node"
-      ]
-    }
-  },
+  "include": ["src/**/*"]
 }

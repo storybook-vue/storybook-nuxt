@@ -1,14 +1,13 @@
 /* eslint-disable import/no-unresolved */
-import { dirname, join } from 'path';
+import { join } from 'path';
 import type { PresetProperty } from '@storybook/types';
 import { mergeConfig, type UserConfig as ViteConfig } from 'vite';
-import { viteFinal as vue3ViteFinal } from '@storybook/vue3-vite/preset';
 import type { Nuxt } from '@nuxt/schema';
 
 import type { StorybookConfig } from './types';
 
 async function configureNuxtVite(baseConfig: Record<string, any>) {
-  const { loadNuxt, buildNuxt, createResolver } = await import('@nuxt/kit');
+  const { loadNuxt, buildNuxt } = await import(require.resolve('@nuxt/kit'));
   const nuxt: Nuxt = await loadNuxt({
     rootDir: baseConfig.root,
     ready: false,
@@ -18,11 +17,6 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
   if ((nuxt.options.builder as string) !== '@nuxt/vite-builder') {
     throw new Error(`Storybook-Nuxt does not support '${nuxt.options.builder}' for now.`);
   }
-
-  const resolver = createResolver(import.meta.url || __dirname);
-  const runtimeDir = resolver.resolve('../runtime');
-  nuxt.options.build.transpile.push(runtimeDir);
-  nuxt.options.alias['~storybook'] = runtimeDir;
 
   return {
     viteConfig: await new Promise<ViteConfig>((resolve, reject) => {
@@ -56,14 +50,8 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
 export const core: PresetProperty<'core', StorybookConfig> = async (config, options) => {
   return {
     ...config,
-    builder: {
-      name: dirname(
-        require.resolve(join('@storybook/builder-vite', 'package.json'))
-      ) as '@storybook/builder-vite',
-      options: {},
-    },
-    framework: '@storybook/nuxt',
-    renderer: dirname(require.resolve(join('@storybook/vue3', 'package.json'))),
+    builder:'@storybook/builder-vite',
+    renderer: '@storybook/vue3',
   };
 };
 /**
@@ -72,15 +60,18 @@ export const core: PresetProperty<'core', StorybookConfig> = async (config, opti
  * @returns preview entries with nuxt runtime
  */
 export const previewAnnotations: StorybookConfig['previewAnnotations'] = (entry = []) => {
-  return [...entry, require.resolve(join(__dirname, 'preview.js'))];
+  return [...entry, require.resolve("@storybook-vue/nuxt/preview.js")];
 };
 
 export const viteFinal: StorybookConfig['viteFinal'] = async (
   config: Record<string, any>,
   options: any
 ) => {
-    console.log({ config, options })
-  const nuxtConfig = await configureNuxtVite(await vue3ViteFinal(config, options));
+  const  viteConfig = async (c: Record<string, any>, o: any) => {
+    const { viteFinal } = await import( require.resolve(join("@storybook/vue3-vite", "preset")));
+    return viteFinal(c, o);
+  }
+  const nuxtConfig = await configureNuxtVite(await viteConfig(config, options));
   return mergeConfig(nuxtConfig.viteConfig, {
     build: { rollupOptions: { external: ['vue'] } },
     define: {
@@ -89,3 +80,5 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
     envPrefix: ['NUXT_'],
   });
 };
+
+

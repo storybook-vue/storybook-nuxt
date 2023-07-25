@@ -1,12 +1,8 @@
-export const nuxtApp = () => import('#app/entry').then((m) => m.default).catch((err) => {});
 
-createRootElement();
-nuxtApp();
+const nuxtApp = () => import(('#app/entry')).then((m) => m.default).catch((err) => {});
+const root = document.createElement('div');
+root.style.display = 'none';
+root.id = '__nuxt';
+document.body.appendChild(root);
 
-function createRootElement() {
-  const root = document.createElement('div');
-  root.style.display = 'none';
-  root.id = '__nuxt';
-  document.body.appendChild(root);
-  return root;
-}
+export default nuxtApp();
