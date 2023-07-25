@@ -41,6 +41,12 @@ https://github.com/storybook-vue/nuxt/assets/711292/e66a1899-ab7c-42dd-b358-59e2
 - [Nuxt](https://nuxt.com/) >= 3.x
 - [Storybook](https://storybook.js.org/) >= 7.x
 
+## Demo 
+
+checkout the demo repo [storybook7-nuxt3-demo](https://github.com/storybook-vue/storybook-nuxt-demo)
+
+or  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/storybook-nuxt-demo)
+
 ## Getting Started
 
 ### In a project without Storybook
