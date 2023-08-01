@@ -16,10 +16,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Run the action
-        uses: ./.github
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
         with:
-          version: 4.11.1
+          version: 7
+          run_install: false
 
       - name: 'Test: which'
         run: which pnpm; which pnpx
