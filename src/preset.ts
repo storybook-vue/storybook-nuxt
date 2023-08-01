@@ -72,6 +72,7 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
     return viteFinal(c, o);
   }
   const nuxtConfig = await configureNuxtVite(await viteConfig(config, options));
+  console.log(' nuxtConfig.nuxt.options: ',nuxtConfig.nuxt.options)
   return mergeConfig(nuxtConfig.viteConfig, {
     build: { rollupOptions: { external: ['vue'] } },
     define: {
