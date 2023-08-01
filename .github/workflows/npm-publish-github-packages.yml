@@ -1,7 +1,7 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
-name: Nuxt Package
+name: Stortbook Nuxt Package
 
 on:
    release:
@@ -37,20 +37,27 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile   
 
-  publish-gpr:
-    needs: build
+  publish-npm:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+
+      - name: Use Node LTS ✨
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
-          registry-url: https://npmjs.com/
-      
-      - run: pnpm ci
-      - run: pnpm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPMJS_TOKEN}}
+          node-version: lts/*
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+
+      - name: Install dependencies 📦️
+        run: pnpm install --frozen-lockfile
+
+      - name: Build 🔨
+        run: pnpm build
+
+      - uses: simenandre/publish-with-pnpm@v1
+        with:
+          npm-auth-token: ${{ secrets.NPMJS_TOKEN }}
