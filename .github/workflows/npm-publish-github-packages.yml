@@ -30,6 +30,16 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npmjs.com/
+      - name: Run the action
+        uses: ./.github
+        with:
+          version: 4.11.1
+
+      - name: 'Test: which'
+        run: which pnpm; which pnpx
+
+      - name: 'Test: install'
+        run: pnpm install
       - run: npm ci
       - run: npm publish
         env:
