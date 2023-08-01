@@ -40,7 +40,7 @@ jobs:
 
       - name: 'Test: install'
         run: pnpm install
-      - run: npm ci
-      - run: npm publish
+      - run: pnpm ci
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPMJS_TOKEN}}
