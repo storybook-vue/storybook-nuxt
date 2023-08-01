@@ -11,6 +11,9 @@ export default defineBuildConfig({
     { input: 'src/preview', ext: 'ts' ,format: 'esm' },
       
   ],
+  files :[
+    'template/**/*',
+  ],
  
   hooks: {
     'mkdist:entry:options' (_ctx, _entry, mkdistOptions) {

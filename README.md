@@ -53,7 +53,7 @@ or  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/sto
 Follow the prompts after running this command in your Nuxt project's root directory:
 
 ```bash
-npx storybook@latest init
+npx storybook-nuxt init
 ```
 
 [More on getting started with Storybook](https://storybook.js.org/docs/vue3/get-started/install)
