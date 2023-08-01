@@ -26,7 +26,7 @@ jobs:
         run: which pnpm; which pnpx
 
       - name: 'Test: install'
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
   publish-gpr:
     needs: build
