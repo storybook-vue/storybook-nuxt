@@ -1,12 +1,13 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
-name: Node.js Package
+name: Nuxt Package
 
 on:
-  release:
-    types: [created]
-
+   release:
+     types: [created]
+   pull_request:
+     
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,8 +16,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm ci
-      - run: npm test
+      - name: Run the action
+        uses: ./.github
+        with:
+          version: 4.11.1
+
+      - name: 'Test: which'
+        run: which pnpm; which pnpx
+
+      - name: 'Test: install'
+        run: pnpm install
 
   publish-gpr:
     needs: build
@@ -30,16 +39,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npmjs.com/
-      - name: Run the action
-        uses: ./.github
-        with:
-          version: 4.11.1
-
-      - name: 'Test: which'
-        run: which pnpm; which pnpx
-
-      - name: 'Test: install'
-        run: pnpm install
+      
       - run: pnpm ci
       - run: pnpm publish
         env:
