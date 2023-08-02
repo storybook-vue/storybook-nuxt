@@ -72,10 +72,20 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
     return viteFinal(c, o);
   }
   const nuxtConfig = await configureNuxtVite(await viteConfig(config, options));
+  const { host = 'localhost' , port = 3000 } = nuxtConfig.nuxt.options.runtimeConfig.app 
+  const target = `//${host}:${port}`
+  
   return mergeConfig(nuxtConfig.viteConfig, {
     build: { rollupOptions: { external: ['vue'] } },
     define: {
       __NUXT__: JSON.stringify({ config: nuxtConfig.nuxt.options.runtimeConfig }),
+    },
+    server : { 
+      cors : true ,
+      proxy:{ '/__nuxt_devtools__/client/': { target , changeOrigin: true, pathRewrite: { '^/api': '' } } }
+    },
+    preview: {
+      headers: { 'Access-Control-Allow-Origin': '*' },
     },
     envPrefix: ['NUXT_'],
   });
