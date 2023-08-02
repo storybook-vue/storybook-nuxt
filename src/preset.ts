@@ -73,8 +73,8 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
   }
   const nuxtConfig = await configureNuxtVite(await viteConfig(config, options));
 
-  const { host = 'localhost' , port = 3000 } = nuxtConfig.nuxt.options.runtimeConfig.app 
-  const target = `//${host}:${port}`
+  const { host = "localhost", port = 3000 } = nuxtConfig.nuxt.options.runtimeConfig.app;
+  const target = `http://${host}:${port}/`;
 
   return mergeConfig(nuxtConfig.viteConfig, {
     build: { rollupOptions: { external: ['vue'] } },
@@ -83,10 +83,10 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
     },
     server : { 
       cors : true ,
-      proxy:{ '/__nuxt_devtools__/client/': { target , changeOrigin: true, pathRewrite: { '^/api': '' } } }
+      proxy:{ '/__nuxt_devtools__/client': { target, changeOrigin: true, ws:true } }
     },
     preview: {
-      headers: { 'Access-Control-Allow-Origin': '*' },
+      headers: { "Access-Control-Allow-Origin": "*" , "Access-Control-Allow-Headers": "*"},
     },
     envPrefix: ['NUXT_'],
   });
