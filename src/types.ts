@@ -9,7 +9,7 @@ export type FrameworkOptions = NuxtOptions & {
 };
 
 type StorybookConfigFramework = {
-  framework: FrameworkName
+  framework: FrameworkName | { name: FrameworkName; options: FrameworkOptions}
   core?: StorybookConfigBase['core'] & { builder?: BuilderName  }  
   typescript?: StorybookConfigBase['typescript'];
   previewAnnotations?: StorybookConfigBase['previewAnnotations'];
