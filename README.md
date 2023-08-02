@@ -36,6 +36,9 @@ https://github.com/storybook-vue/nuxt/assets/711292/e66a1899-ab7c-42dd-b358-59e2
 
 👉 [Typescript](#typescript) (already supported out of the box by Storybook)
 
+👉 [Nuxt DevTools](https://devtools.nuxtjs.org/) : finaly as Bonus, Nuxt DevTools works amazingly with your Storybooook, full feature
+
+
 ## Requirements
 
 - [Nuxt](https://nuxt.com/) >= 3.x
