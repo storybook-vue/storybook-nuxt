@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../../storybook-nuxt-demo"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
