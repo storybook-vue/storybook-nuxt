@@ -6,7 +6,9 @@ name: Storybook Nuxt Package
 on:
    release:
      types: [created]
-   pull_request:
+   push:
+    branches:
+      - main
      
 jobs:
   build:
