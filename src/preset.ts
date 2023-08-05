@@ -3,7 +3,7 @@ import { join } from 'path';
 import type { PresetProperty } from '@storybook/types';
 import { mergeConfig, type UserConfig as ViteConfig } from 'vite';
 import type { Nuxt } from '@nuxt/schema';
-import { startSubprocess } from '@nuxt/devtools-kit';
+
 
 import type { StorybookConfig } from './types';
 
@@ -38,7 +38,6 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
         .ready()
         .then(() => {
           buildNuxt(nuxt).catch(reject);
-          startNuxtDevServer(nuxt).catch(reject)
         })
         .catch((err: { toString: () => string | string[] }) => {
           if (!err.toString().includes('_stop_')) {
@@ -99,23 +98,5 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
   });
 };
 
-const startNuxtDevServer = async (nuxt: Nuxt) => {
-
-  const _process = startSubprocess(
-    {
-      command: 'npx',
-      args: ['nuxi', 'dev', '--port', '3300'],
-      cwd: nuxt.options.rootDir,
-    },
-    {
-      id: 'nuxt:dev',
-      name: ' run Nuxt dev server',
-    },
-    nuxt,
-  )
-  _process.getProcess().stderr?.pipe(process.stderr)
-  _process.getProcess().stdout?.pipe(process.stdout)
-  return _process
-}
 
 
