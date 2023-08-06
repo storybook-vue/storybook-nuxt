@@ -4,32 +4,25 @@ export default defineBuildConfig({
   declaration: true,
   entries: [
     // Core
-    { input: 'src/index' , format: 'esm' },
+    { input: 'src/index' },
     // Preset
-    { input: 'src/preset',  ext: 'ts' , format: 'esm' },
+    { input: 'src/preset' },
     // Runtime dirs
-    { input: 'src/preview', ext: 'ts' ,format: 'esm' },
+    { input: 'src/preview', outDir:'dist/', ext: 'js' },
       
   ],
-  files :[
-    'template/**/*',
-  ],
- 
-  hooks: {
-    'mkdist:entry:options' (_ctx, _entry, mkdistOptions) {
-      mkdistOptions.addRelativeDeclarationExtensions = true
-    }
-  },
+  
   rollup: {
     emitCJS: true,
   },
   externals: [
-    '#app/entry',
+
     'nuxt/schema',
     'nuxt/app',
     '@storybook/types',
     '@vue/shared',
-    '@unhead/vue'
+    '@unhead/vue',
+    '@nuxt/devtools-kit',
   ],
   failOnWarn: false
 })

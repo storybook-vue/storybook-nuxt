@@ -2,7 +2,7 @@
 import { join } from 'path';
 import type { PresetProperty } from '@storybook/types';
 import { mergeConfig, type UserConfig as ViteConfig } from 'vite';
-import type { Nuxt } from '@nuxt/schema';
+import type { Nuxt, NuxtApp } from '@nuxt/schema';
 
 
 import type { StorybookConfig } from './types';
@@ -22,6 +22,9 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
   return {
     viteConfig: await new Promise<ViteConfig>((resolve, reject) => {
       nuxt.hook('modules:done', () => {
+        nuxt.hook('app:resolve', (app:NuxtApp) => {
+           console.log(  ' app.plungins ',app.plugins )
+        });
         nuxt.hook(
           'vite:extendConfig',
           (
@@ -61,7 +64,7 @@ export const core: PresetProperty<'core', StorybookConfig> = async (config, opti
  * @returns preview entries with nuxt runtime
  */
 export const previewAnnotations: StorybookConfig['previewAnnotations'] = (entry = []) => {
-  return [...entry, require.resolve("@storybook-vue/nuxt/preview.js")];
+  return [...entry, require.resolve("@storybook-vue/nuxt/preview")];
 };
 
 export const viteFinal: StorybookConfig['viteFinal'] = async (
@@ -73,8 +76,9 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
     return viteFinal(c, o);
   }
   const nuxtConfig = await configureNuxtVite(await viteConfig(config, options));
-
-  const DEVTOOLS_UI_LOCAL_PORT =  nuxtConfig.nuxt.options.devServer.port ??  '3000'
+  const devtools = nuxtConfig.nuxt.options.runtimeConfig.public['devtools'] as Record<string, any> || {}
+  
+  const DEVTOOLS_UI_LOCAL_PORT = devtools.port?.toString()  ??   '12442'
   const DEVTOOLS_UI_ROUTE = '/__nuxt_devtools__/client'
   return mergeConfig(nuxtConfig.viteConfig, {
     build: { rollupOptions: { external: ['vue'] } },
@@ -84,11 +88,13 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
     server : { 
       cors : true ,
       proxy:{ [ DEVTOOLS_UI_ROUTE ] : { 
-        target:`http://localhost:${DEVTOOLS_UI_LOCAL_PORT}`,
+        target:`http://localhost:${DEVTOOLS_UI_LOCAL_PORT}${DEVTOOLS_UI_ROUTE}`,
         changeOrigin: true, 
         secure: false,
+        rewrite: (path: string) => path.replace(DEVTOOLS_UI_ROUTE, ''),
         ws:true 
-      } 
+      } ,
+      fs : { strict : false }
      }
     },
     preview: {
@@ -97,6 +103,5 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
     envPrefix: ['NUXT_'],
   });
 };
-
 
 

@@ -7,7 +7,15 @@
     "types": ["node"],
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "strict": true
+    "strict": true,
+    "paths": {
+      "#app": [
+        "/Users/chakir/devs/nuxt/node_modules/nuxt/dist/app"
+      ],
+      "#app/*": [
+        "/Users/chakir/devs/nuxt/node_modules/nuxt/dist/app/*"
+      ],
+    }
   },
   "include": ["src/**/*"]
 }
