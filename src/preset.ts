@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { join } from 'path';
+import { join, resolve } from 'path';
 import type { PresetProperty } from '@storybook/types';
 import { mergeConfig, type UserConfig as ViteConfig } from 'vite';
 import type { Nuxt, NuxtApp } from '@nuxt/schema';
@@ -64,7 +64,7 @@ export const core: PresetProperty<'core', StorybookConfig> = async (config, opti
  * @returns preview entries with nuxt runtime
  */
 export const previewAnnotations: StorybookConfig['previewAnnotations'] = (entry = []) => {
-  return [...entry, require.resolve("@storybook-vue/nuxt/preview")];
+  return [...entry, resolve(join(__dirname, "preview"))];
 };
 
 export const viteFinal: StorybookConfig['viteFinal'] = async (
