@@ -12,7 +12,7 @@ const app = nuxtApp()
 
 
 app.then( async (m) => { 
-    const { useNuxtApp } = await import( "#app/nuxt");
+    const { useNuxtApp } = await import( "#app");
     const vueApp = useNuxtApp().vueApp 
     console.log('  vueApp mounted:',vueApp)
 }).catch((err) => {  console.log('  vueApp error:',err)})
