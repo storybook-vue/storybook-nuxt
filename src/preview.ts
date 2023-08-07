@@ -1,6 +1,6 @@
 
 
-import { useNuxtApp } from "#app/nuxt";
+
 
 const nuxtApp = () => import(('#app/entry')).then((m) => m.default).catch((err) => {});
 const root = document.createElement('div');
@@ -12,11 +12,10 @@ const app = nuxtApp()
 
 
 app.then( async (m) => { 
-   
+    const { useNuxtApp } = await import( "#app/nuxt");
     const vueApp = useNuxtApp().vueApp 
-    console.log('vueApp ',vueApp.config.globalProperties)
-
-})
+    console.log('  vueApp mounted:',vueApp)
+}).catch((err) => {  console.log('  vueApp error:',err)})
 
 
 export default app;
