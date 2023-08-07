@@ -26,9 +26,6 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
         nuxt.hook('app:resolve', (nuxtApp:NuxtApp) => {
 
         });
-       
-        
-       
         nuxt.hook(
           'vite:extendConfig',
           (
