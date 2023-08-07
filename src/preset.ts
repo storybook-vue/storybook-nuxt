@@ -7,6 +7,7 @@ import type { Nuxt, NuxtApp } from '@nuxt/schema';
 
 import type { StorybookConfig } from './types';
 
+
 async function configureNuxtVite(baseConfig: Record<string, any>) {
   const { loadNuxt, buildNuxt } = await import(require.resolve('@nuxt/kit'));
   const nuxt: Nuxt = await loadNuxt({
@@ -22,9 +23,12 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
   return {
     viteConfig: await new Promise<ViteConfig>((resolve, reject) => {
       nuxt.hook('modules:done', () => {
-        nuxt.hook('app:resolve', (app:NuxtApp) => {
-           console.log(  ' app.plungins ',app.plugins )
+        nuxt.hook('app:resolve', (nuxtApp:NuxtApp) => {
+
         });
+       
+        
+       
         nuxt.hook(
           'vite:extendConfig',
           (
@@ -32,6 +36,7 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
             { isClient }: any
           ) => {
             if (isClient) {
+              
               resolve(mergeConfig(config, baseConfig));
             }
           }

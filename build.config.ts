@@ -16,13 +16,13 @@ export default defineBuildConfig({
     emitCJS: true,
   },
   externals: [
-
     'nuxt/schema',
     'nuxt/app',
     '@storybook/types',
     '@vue/shared',
     '@unhead/vue',
     '@nuxt/devtools-kit',
+    '@storybook/vue3'
   ],
   failOnWarn: false
 })
