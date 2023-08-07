@@ -1,7 +1,4 @@
 
-
-
-
 const nuxtApp = () => import(('#app/entry')).then((m) => m.default).catch((err) => {});
 const root = document.createElement('div');
 root.style.display = 'none';

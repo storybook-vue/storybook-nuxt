@@ -22,7 +22,7 @@ export default defineBuildConfig({
     '@vue/shared',
     '@unhead/vue',
     '@nuxt/devtools-kit',
-    '@storybook/vue3'
+    '#app/nuxt',
   ],
   failOnWarn: false
 })
