@@ -55,6 +55,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@storybook/vue3":"7.2.1",
     "@nuxt/devtools-kit": "^0.7.4",
     "@nuxt/kit": "^3.6.5",
     "@nuxt/schema": "^3.6.5",
@@ -78,7 +79,6 @@
     "vite": "^4.4.8"
   },
   "peerDependencies": {
-    "@storybook/vue3":"7.2.1",
     "nuxt": "^3.6.5",
     "vite": "^4.0.0",
     "vue": "^3.2.31"
