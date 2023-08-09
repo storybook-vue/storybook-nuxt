@@ -1,4 +1,5 @@
 
+
 const nuxtApp = () => import(('#app/entry')).then((m) => m.default).catch((err) => {});
 const root = document.createElement('div');
 root.style.display = 'none';
@@ -9,9 +10,8 @@ const app = nuxtApp()
 
 
 app.then( async (m) => { 
-    const { useNuxtApp } = await import( "#app");
-    const vueApp = useNuxtApp().vueApp 
-    console.log('  vueApp mounted:',vueApp)
+    console.log('  vueApp mounted:',m)
+
 }).catch((err) => {  console.log('  vueApp error:',err)})
 
 
