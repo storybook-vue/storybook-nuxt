@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url'
 const packageDir = resolve(fileURLToPath(import.meta.url), '../..')
 const distDir = resolve(fileURLToPath(import.meta.url), '..')
 const runtimeDir = resolve(distDir, 'runtime')
+const pluginsDir = resolve(runtimeDir, 'plugins')
 
 
 import type { StorybookConfig } from './types';
@@ -20,56 +21,51 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
   const nuxt: Nuxt = await loadNuxt({
     rootDir: baseConfig.root,
     ready: false,
-    dev: true,
+    dev: false,
   });
 
   if ((nuxt.options.builder as string) !== '@nuxt/vite-builder') {
     throw new Error(`Storybook-Nuxt does not support '${nuxt.options.builder}' for now.`);
   }
 
-  
-
-  return {
-    viteConfig: await new Promise<ViteConfig>((resolve, reject) => {
-      nuxt.hook('modules:done', () => {
-         console.log('  nuxt hook modules:done ---> addPlugin() plugins :',nuxt.options.plugins)
-        // 
-        addPlugin({
-          src: join(runtimeDir,'storybook'),
-          mode: 'server',
-        }); 
-        //
-        addPlugin({
-          src: join(runtimeDir,'storybook'),
-          mode: 'client',
-        }); 
-        nuxt.hook(
-          'vite:extendConfig',
-          (
-            config: ViteConfig | PromiseLike<ViteConfig> | Record<string, any>,
-            { isClient }: any
-          ) => {
-          
-            if (isClient) {
-              resolve(mergeConfig(config, baseConfig));
-            }
-          }
-        );
-      });
-      nuxt
-        .ready()
-        .then(() => {
-          console.log('  nuxt ready ---> buildNuxt()')
-          buildNuxt(nuxt).catch(reject);
-        })
-        .catch((err: { toString: () => string | string[] }) => {
-          if (!err.toString().includes('_stop_')) {
-            reject(err);
-          }
-        });
-    }),
-    nuxt,
+  const collectedData = {
+    viteConfig: {},
   };
+
+  await nuxt.hook('modules:done', () => {
+    // Add storybook plugin to nuxt
+    //
+    addPlugin({
+      src: join(runtimeDir,'plugins/storybook'),
+      mode: 'client',
+    }); 
+
+    nuxt.hook(
+      'vite:extendConfig',
+      (
+        config: ViteConfig | PromiseLike<ViteConfig> | Record<string, any>,
+        { isClient }: any
+      ) => {
+      
+        if (isClient) {
+          collectedData.viteConfig = mergeConfig(config, baseConfig);
+        }
+      }
+    );
+  });
+
+  await nuxt.ready();
+  
+  try {
+    await buildNuxt(nuxt);
+
+    return {
+      viteConfig: collectedData.viteConfig,
+      nuxt,
+    }
+  }catch(e:any) {
+    throw new Error(e);
+  }
 }
 export const core: PresetProperty<'core', StorybookConfig> = async (config, options) => {
   return {
@@ -117,7 +113,7 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
       },
       
      },
-     fs: { allow:[searchForWorkspaceRoot(process.cwd()),packageDir,runtimeDir] }
+     fs: { allow:[searchForWorkspaceRoot(process.cwd()),packageDir,runtimeDir,pluginsDir] }
     },
     preview: {
       headers: { "Access-Control-Allow-Origin": "*" , "Access-Control-Allow-Headers": "*"},

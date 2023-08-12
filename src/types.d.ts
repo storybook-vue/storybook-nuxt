@@ -1,4 +1,8 @@
 
+declare var  STORYBOOK_VUE_GLOBAL_PLUGINS: string[];
+declare var  STORYBOOK_VUE_GLOBAL_MIXINS: string[];
+
+
 import type { BuilderOptions, StorybookConfig as StorybookConfigBase } from '@storybook/types';
 
 type FrameworkName = '@storybook-vue/nuxt';
@@ -22,3 +26,5 @@ export type StorybookConfig = { viteFinal:Record<string, any>  } & StorybookConf
 
 export interface NuxtOptions {
 }
+
+  

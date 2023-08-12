@@ -5,6 +5,9 @@
 .cache
 dist
 
+# Editor files
+.vscode
+
 # Node dependencies
 node_modules
 
