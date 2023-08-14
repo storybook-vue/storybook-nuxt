@@ -11,6 +11,13 @@ Storybook package for [**Nuxt framework**](https://nuxt.com/) with zero configs.
 https://github.com/storybook-vue/nuxt/assets/711292/e66a1899-ab7c-42dd-b358-59e22ff0f609
 
 
+## Demos 
+
+- simple demo repo  [storybook7-nuxt3-demo](https://github.com/storybook-vue/storybook-nuxt-demo)
+or  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/storybook-nuxt-demo)
+
+
+- demo with more plugins [i18n+pinia]( https://github.com/chakAs3/nuxt-sb-app
 
 ## Supported Features
 
@@ -48,13 +55,6 @@ https://github.com/storybook-vue/nuxt/assets/711292/63cc1fb3-ec6b-4df2-ad61-d87e
 - [Nuxt](https://nuxt.com/) >= 3.x
 - [Storybook](https://storybook.js.org/) >= 7.x
 
-## Demo 
-
-Checkout the demo repo [storybook7-nuxt3-demo](https://github.com/storybook-vue/storybook-nuxt-demo)
-or  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/storybook-nuxt-demo)
-
-
-Checkout the demo with more plugins [i18n+pinia]( https://github.com/chakAs3/nuxt-sb-app))
 
 ## Getting Started
 
