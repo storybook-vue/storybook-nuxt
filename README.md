@@ -53,6 +53,9 @@ https://github.com/storybook-vue/nuxt/assets/711292/63cc1fb3-ec6b-4df2-ad61-d87e
 Checkout the demo repo [storybook7-nuxt3-demo](https://github.com/storybook-vue/storybook-nuxt-demo)
 or  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/storybook-nuxt-demo)
 
+
+Checkout the demo with more plugins [i18n+pinia]( https://github.com/chakAs3/nuxt-sb-app))
+
 ## Getting Started
 
 ### In a project without Storybook
