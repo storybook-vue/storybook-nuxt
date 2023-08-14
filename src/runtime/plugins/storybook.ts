@@ -20,7 +20,7 @@ export default defineNuxtPlugin({
         nuxt.callHook('app:created', vueApp)
         for (const plugin of plugins) {
           try{
-            if(typeof plugin === 'function' && plugin.name !== 'storybook-nuxt-plugin'){
+            if(typeof plugin === 'function' && !plugin.toString().includes('definePayloadReviver')){
               await vueApp.runWithContext(()  => plugin(nuxt))
             }
           }catch(e){
