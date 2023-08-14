@@ -32,13 +32,11 @@ export default defineNuxtPlugin({
       }
       
       globalWindow.STORYBOOK_VUE_GLOBAL_PLUGINS = []
-      globalWindow.NUXT_APPLY_PLUGINS_FUNC = applyNuxtPlugins
+      globalWindow.APPLY_PLUGINS_FUNC = applyNuxtPlugins
     },
   
     hooks: {
       'app:created'(nuxtApp)  {
-
-
       },
     }
 })

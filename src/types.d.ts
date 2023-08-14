@@ -4,6 +4,8 @@ declare var  STORYBOOK_VUE_GLOBAL_MIXINS: string[];
 
 
 import type { BuilderOptions, StorybookConfig as StorybookConfigBase } from '@storybook/types';
+import type { Preview , StoryFn , StoryObj, VueRenderer } from '@storybook/vue3'
+
 
 type FrameworkName = '@storybook-vue/nuxt';
 type BuilderName = '@storybook/builder-vite';
@@ -27,4 +29,4 @@ export type StorybookConfig = { viteFinal:Record<string, any>  } & StorybookConf
 export interface NuxtOptions {
 }
 
-  
+export { StoryFn, StoryObj, Preview, VueRenderer, addPluginSetup }  
