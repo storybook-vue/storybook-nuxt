@@ -32,7 +32,6 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
   
   nuxt.options.app.rootId = 'storybook-root'
 
-
   let extendedConfig  = {}
   
   nuxt.hook('modules:done', () => {
@@ -116,8 +115,12 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
 
 };
 
-function getDevtoolsConfig(nuxt: Nuxt){
-    
+/**
+ *  Get devtools config from nuxt runtime config
+ * @param nuxt 
+ * @returns 
+ */
+function getDevtoolsConfig(nuxt: Nuxt){  
   const devtools = nuxt.options.runtimeConfig.public['devtools'] as Record<string, any> || {}
   const port = devtools.port?.toString()  ??   '12442'
   const route = '/__nuxt_devtools__/client'
