@@ -11,12 +11,14 @@ const packageDir = resolve(fileURLToPath(import.meta.url), '../..')
 const distDir = resolve(fileURLToPath(import.meta.url), '..')
 const runtimeDir = resolve(distDir, 'runtime')
 const pluginsDir = resolve(runtimeDir, 'plugins')
+const componentsDir = resolve(runtimeDir, 'components')
 
 
 import type { StorybookConfig } from './types';
 
 
-async function configureNuxtVite(baseConfig: Record<string, any>) {
+
+async function defineNuxtConfig(baseConfig: Record<string, any>) {
   const { loadNuxt, buildNuxt, addPlugin } = await import(require.resolve('@nuxt/kit'));
   const nuxt: Nuxt = await loadNuxt({
     rootDir: baseConfig.root,
@@ -27,18 +29,20 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
   if ((nuxt.options.builder as string) !== '@nuxt/vite-builder') {
     throw new Error(`Storybook-Nuxt does not support '${nuxt.options.builder}' for now.`);
   }
+  
+  nuxt.options.app.rootId = 'storybook-root'
 
-  const collectedData = {
-    viteConfig: {},
-  };
 
-  await nuxt.hook('modules:done', () => {
-    // Add storybook plugin to nuxt
-    //
+  let extendedConfig  = {}
+  
+  nuxt.hook('modules:done', () => {
     addPlugin({
       src: join(runtimeDir,'plugins/storybook'),
       mode: 'client',
-    }); 
+    });  
+    // Override nuxt-link component to use storybook router
+    extendComponents(nuxt)
+    extendPages(nuxt)
 
     nuxt.hook(
       'vite:extendConfig',
@@ -48,7 +52,7 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
       ) => {
       
         if (isClient) {
-          collectedData.viteConfig = mergeConfig(config, baseConfig);
+          extendedConfig = mergeConfig(config, baseConfig);
         }
       }
     );
@@ -60,7 +64,7 @@ async function configureNuxtVite(baseConfig: Record<string, any>) {
     await buildNuxt(nuxt);
 
     return {
-      viteConfig: collectedData.viteConfig,
+      viteConfig: extendedConfig,
       nuxt,
     }
   }catch(e:any) {
@@ -87,33 +91,22 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
   config: Record<string, any>,
   options: any
 ) => {
-  const  viteConfig = async (c: Record<string, any>, o: any) => {
+  const  getStorybookViteConfig = async (c: Record<string, any>, o: any) => {
     const { viteFinal } = await import( require.resolve(join("@storybook/vue3-vite", "preset")));
     return viteFinal(c, o);
   }
-  const nuxtConfig = await configureNuxtVite(await viteConfig(config, options));
-   
-  const devtools = nuxtConfig.nuxt.options.runtimeConfig.public['devtools'] as Record<string, any> || {}
-  const DEVTOOLS_UI_LOCAL_PORT = devtools.port?.toString()  ??   '12442'
-  const DEVTOOLS_UI_ROUTE = '/__nuxt_devtools__/client'
-  const mc = mergeConfig(nuxtConfig.viteConfig, {
+  const nuxtConfig = await defineNuxtConfig(await getStorybookViteConfig(config, options));
+  const { enabled, proxy } = getDevtoolsConfig(nuxtConfig.nuxt)
+  
+  return mergeConfig(nuxtConfig.viteConfig, {
     build: { rollupOptions: { external: ['vue','vue-demi'] } },
     define: {
       __NUXT__: JSON.stringify({ config: nuxtConfig.nuxt.options.runtimeConfig }),
     },
-    optimizeDeps: { include: ['@storybook-vue/nuxt'] },
     server : { 
       cors : true ,
-      proxy:{ [ DEVTOOLS_UI_ROUTE ] : { 
-        target:`http://localhost:${DEVTOOLS_UI_LOCAL_PORT}${DEVTOOLS_UI_ROUTE}`,
-        changeOrigin: true, 
-        secure: false,
-        rewrite: (path: string) => path.replace(DEVTOOLS_UI_ROUTE, ''),
-        ws:true 
-      },
-      
-     },
-     fs: { allow:[searchForWorkspaceRoot(process.cwd()),packageDir,runtimeDir,pluginsDir] }
+      proxy: enabled ? proxy :{},
+      fs: { allow:[searchForWorkspaceRoot(process.cwd()),packageDir,runtimeDir,pluginsDir,componentsDir] }
     },
     preview: {
       headers: { "Access-Control-Allow-Origin": "*" , "Access-Control-Allow-Headers": "*"},
@@ -121,9 +114,45 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
     envPrefix: ['NUXT_'],
   });
 
-  console.log('\n\n .... vite.server :',mc.server)
-
-  return mc
 };
 
+function getDevtoolsConfig(nuxt: Nuxt){
+    
+  const devtools = nuxt.options.runtimeConfig.public['devtools'] as Record<string, any> || {}
+  const port = devtools.port?.toString()  ??   '12442'
+  const route = '/__nuxt_devtools__/client'
+  const proxy = {  [ route ] : 
+    { 
+      target:`http://localhost:${port}${route}`,
+      changeOrigin: true, 
+      secure: false,
+      rewrite: (path: string) => path.replace(route, ''),
+      ws:true 
+    }
+  }
+  return {
+    enabled: nuxt.options.devtools,
+    port,
+    route,
+    proxy
+  }
+}
+
+function extendComponents(nuxt: Nuxt) {
+  nuxt.hook('components:extend', (components: any) => {
+    const nuxtLink = components.find(({ name }: any) => name === 'NuxtLink')
+    nuxtLink.filePath = join(runtimeDir,'components/nuxt-link');
+    nuxtLink.shortPath = join(runtimeDir,'components/nuxt-link');;
+    nuxt.options.build.transpile.push(nuxtLink.filePath)      
+  });
+}
+
+function extendPages(nuxt: Nuxt) {
+  nuxt.hook('pages:extend', (pages: any) => {
+    pages.push({
+      name: 'iframe.html',
+      path: '/',
+    })   
+  })
+}
 
