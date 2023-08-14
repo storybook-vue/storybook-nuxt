@@ -17,7 +17,7 @@ https://github.com/storybook-vue/nuxt/assets/711292/e66a1899-ab7c-42dd-b358-59e2
 or  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/storybook-nuxt-demo)
 
 
-- Demo with more plugins [i18n+pinia](https://github.com/chakAs3/nuxt-sb-app) try it on [Stackblitz]([https:/](https://stackblitz.com/~/)/github.com/chakAs3/nuxt-sb-app)
+- Demo with more plugins [i18n+pinia](https://github.com/chakAs3/nuxt-sb-app) try it on [Stackblitz](https://stackblitz.com/~/github.com/chakAs3/nuxt-sb-app)
 
 ## Supported Features
 
