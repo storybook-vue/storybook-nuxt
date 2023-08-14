@@ -4,8 +4,9 @@ declare var  STORYBOOK_VUE_GLOBAL_MIXINS: string[];
 
 
 import type { BuilderOptions, StorybookConfig as StorybookConfigBase } from '@storybook/types';
-import type { Preview , StoryFn , StoryObj, VueRenderer } from '@storybook/vue3'
+import type { Preview , StoryFn , StoryObj, VueRenderer, Meta, DecoratorFunction  } from '@storybook/vue3'
 
+import { setup as addPluginSetup , render , decorateStor, renderToCanvas } from '@storybook/vue3'
 
 type FrameworkName = '@storybook-vue/nuxt';
 type BuilderName = '@storybook/builder-vite';
