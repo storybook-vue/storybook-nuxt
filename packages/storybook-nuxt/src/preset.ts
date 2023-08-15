@@ -30,7 +30,7 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
     throw new Error(`Storybook-Nuxt does not support '${nuxt.options.builder}' for now.`);
   }
   
-  nuxt.options.app.rootId = 'storybook-root'
+  // nuxt.options.app.rootId = 'storybook-nuxt-root'
 
   let extendedConfig  = {}
   
@@ -42,6 +42,11 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
     // Override nuxt-link component to use storybook router
     extendComponents(nuxt)
     extendPages(nuxt)
+
+    nuxt.hook('app:resolve', (app: any) => {
+      //app.options.router.base = '/iframe.html'
+      console.log({app})
+    })
 
     nuxt.hook(
       'vite:extendConfig',
@@ -152,10 +157,15 @@ function extendComponents(nuxt: Nuxt) {
 
 function extendPages(nuxt: Nuxt) {
   nuxt.hook('pages:extend', (pages: any) => {
-    pages.push({
-      name: 'iframe.html',
-      path: '/',
-    })   
+    console.log(pages)
+    // pages.push({
+    //   name: 'iframe.html',
+    //   path: '/iframe.html',
+    //   redirect:'/'
+    // })   
+  })
+
+  nuxt.hook('app:templates', (templates: any) => {
+    console.log({templates})
   })
 }
-

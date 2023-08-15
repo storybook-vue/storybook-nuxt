@@ -1,21 +1,28 @@
 {
-  "extends": "./.storybook/tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "target": "ESNext",
-    "module": "ESNext",
-    "types": ["node"],
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
+    "rootDir": ".",
+    "baseUrl": ".",
     "strict": true,
+    "module": "esnext",
+    "lib": ["esnext", "dom"],
+    "target": "esnext",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "paths": {
-      "#app": [
-        "/Users/chakir/devs/nuxt/node_modules/nuxt/dist/app"
-      ],
-      "#app/*": [
-        "/Users/chakir/devs/nuxt/node_modules/nuxt/dist/app/*"
-      ],
+      "@storybook-nuxt/framework": ["./packages/storybook-nuxt/src/index.ts"],
+  
     }
   },
-  "include": ["src/**/*"]
+  "exclude": [
+    "**/node_modules",
+    "**/dist",
+    "**/playground",
+    "**/playgrounds",
+    "**/clones",
+    "**/docs",
+    "./packages/devtools/client"
+  ]
 }

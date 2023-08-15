@@ -1,7 +1,9 @@
-import {  createNuxtApp, defineNuxtPlugin } from "#app/nuxt"
+import {  createNuxtApp, defineNuxtPlugin } from "nuxt/app"
 // @ts-expect-error virtual file
 import  plugins  from "#build/plugins"
 import { App } from "vue";
+
+
 
 
 const globalWindow = window as any;
@@ -11,13 +13,15 @@ export default defineNuxtPlugin({
     enforce: 'pre', // or 'post'
 
     setup(nuxtApp) {
-   
+        console.log('---- nuxtApp',nuxtApp)
       if(nuxtApp.globalName !== 'nuxt')
       return
-    
+       
       const applyNuxtPlugins = async (vueApp: App,storyContext:any) => {
         const nuxt = createNuxtApp({vueApp, globalName: storyContext.id})
-        nuxt.callHook('app:created', vueApp)
+        
+        
+       nuxt.hooks.callHook('app:created', vueApp)
         for (const plugin of plugins) {
           try{
             if(typeof plugin === 'function' && !plugin.toString().includes('definePayloadReviver')){
@@ -27,6 +31,10 @@ export default defineNuxtPlugin({
             console.log('error in plugin',e)
           }
         }
+        console.log('1-nuxt.router  ',nuxt._router)
+        nuxt._router = vueApp.config.globalProperties.$router
+        console.log('2-nuxt.router  ',nuxt._route)
+
       
         return nuxt
       }
