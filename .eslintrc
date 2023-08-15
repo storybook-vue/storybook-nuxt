@@ -1,0 +1,10 @@
+ {
+    "rules": {
+        "vue/no-v-text-v-html-on-component": "off",
+        "n/prefer-global/process": "off"
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2020
+    }
+}
