@@ -10,13 +10,13 @@ export default defineNuxtPlugin({
     name: 'storybook-nuxt-plugin',
     enforce: 'pre', // or 'post'
 
-    setup(nuxtApp) {
+    setup(nuxtApp: any) {
    
       if(nuxtApp.globalName !== 'nuxt')
       return
     
       const applyNuxtPlugins = async (vueApp: App,storyContext:any) => {
-        const nuxt = createNuxtApp({vueApp, globalName: storyContext.id})
+        const nuxt = createNuxtApp({vueApp, globalName: `nuxt-${storyContext.id}`})
         nuxt.callHook('app:created', vueApp)
         for (const plugin of plugins) {
           try{
@@ -36,10 +36,7 @@ export default defineNuxtPlugin({
     },
   
     hooks: {
-      'app:created'(nuxtApp)  {
-
-
-      },
+      'app:created'(nuxtApp: any)  {},
     }
 })
 
