@@ -7,8 +7,6 @@ on:
    release:
      types: [created]
    push:
-    branches:
-      - main
     tags:
       - 'release*'
       - 'v*'
