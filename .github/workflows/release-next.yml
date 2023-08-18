@@ -10,9 +10,8 @@ on:
     branches:
       - next
     tags:
-      - 'release*'
-      - 'v*'
-      - 'npm*'
+      - 'dev*'
+      - 'test*'
      
 jobs:
   build:
