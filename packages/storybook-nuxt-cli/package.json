@@ -1,0 +1,21 @@
+{
+  "name": "storybook-nuxt",
+  "version": "0.0.2-alpha.0",
+  "description": "Storybook CLI",
+  "license": "MIT",
+  "keywords": [
+    "storybook",
+    "cli",
+    "nuxt",
+    "vue"
+  ],
+  "bin": "./index.js",
+  "dependencies": {
+    "@storybook-nuxt/cli": "7.4.0-alpha.10",
+    "@storybook/cli": "7.4.0-alpha.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "e6a7fd8a655c69780bc20b9749c2699e44beae17"
+}

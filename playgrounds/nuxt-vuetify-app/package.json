@@ -1,0 +1,24 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@types/node": "^18.17.3",
+    "nuxt": "^3.6.5",
+    "vuetify-nuxt-module": "^0.5.7"
+  },
+  "overrides": {
+    "strip-ansi": "~6.0.0",
+    "string-width": "~4.2.3",
+    "wrap-ansi": "~8.1.0"
+  }
+}
