@@ -1,10 +1,15 @@
  {
-    "rules": {
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+   
+    "extends": [
+        "@antfu"
+      ],
+      "rules": {
         "vue/no-v-text-v-html-on-component": "off",
         "n/prefer-global/process": "off"
-    },
-    "parserOptions": {
-        "sourceType": "module",
-        "ecmaVersion": 2020
-    }
+      }
 }

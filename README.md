@@ -84,7 +84,7 @@ export default {
     name: '@storybook-vue/nuxt', // Add this
     options: {},
   },
-};
+}
 ```
 
 ## Documentation

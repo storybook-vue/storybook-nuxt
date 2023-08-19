@@ -12,17 +12,20 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "paths": {
-      "@storybook-nuxt/framework": ["./packages/storybook-nuxt/src/index.ts"],
-  
+      "@storybook-nuxt/framework": ["./packages/storybook-nuxt/src/index.ts"]
+
     }
   },
   "exclude": [
     "**/node_modules",
     "**/dist",
     "**/playground",
-    "**/playgrounds",
+    "**/storybook-static",
+    "playgrounds/**/*",
     "**/clones",
     "**/docs",
-    "./packages/devtools/client"
+    "./packages/**/playground",
+    "./packages/devtools/client",
+    "./playgrounds/my-nuxt-ap"
   ]
 }
