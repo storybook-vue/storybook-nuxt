@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-import('@storybook-nuxt/cli/bin/index')
+import('@storybook/cli/bin/index')
