@@ -1,7 +1,7 @@
 {
   "name": "storybook-nuxt",
   "type": "module",
-  "version": "0.0.2-alpha.6",
+  "version": "0.0.2-alpha.8",
   "description": "Storybook CLI",
   "license": "MIT",
   "keywords": [
@@ -12,7 +12,7 @@
   ],
   "bin": "./index.mjs",
   "dependencies": {
-    "@storybook/cli": "npm:@storybook-nuxt/cli@7.4.0-alpha.7"
+    "@storybook/cli": "npm:@storybook-nuxt/cli@7.4.0-alpha.8"
 
   },
   "publishConfig": {
