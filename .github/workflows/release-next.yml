@@ -12,6 +12,8 @@ on:
     tags:
       - 'dev*'
       - 'test*'
+      - 'beta*'
+      - 'alpha*'
 
 jobs:
   build:

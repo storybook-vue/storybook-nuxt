@@ -12,7 +12,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "paths": {
-      "@storybook-nuxt/framework": ["./packages/storybook-nuxt/src/index.ts"]
+      "@storybook-vue/nuxt": ["./packages/storybook-nuxt/src/index.ts"]
 
     }
   },
