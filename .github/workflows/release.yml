@@ -65,5 +65,6 @@ jobs:
 
       - name: Publish 🚀️
         run: pnpm publish packages/storybook-nuxt  --access public --report-summary
+          pnpm publish packages/nuxt-storybook --access public --report-summary
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPMJS_TOKEN}}
