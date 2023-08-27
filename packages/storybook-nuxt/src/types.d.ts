@@ -1,7 +1,5 @@
 import type { BuilderOptions, StorybookConfig as StorybookConfigBase } from '@storybook/types';
-import type {
-  Preview, StoryFn, StoryObj, VueRenderer, Meta, DecoratorFunction,
-} from '@storybook/vue3';
+
 
 
 declare let STORYBOOK_VUE_GLOBAL_PLUGINS: string[];
@@ -29,6 +27,4 @@ type StorybookConfigFramework = {
 export type StorybookConfig = { viteFinal?:Record<string, any> } & StorybookConfigFramework;
 export interface NuxtOptions {
 }
-export {
-  Meta, StoryFn, StoryObj, Preview, VueRenderer, DecoratorFunction,
-};
+

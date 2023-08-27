@@ -4,11 +4,11 @@ export default defineBuildConfig({
   declaration: true,
   entries: [
     // Core
-    { input: 'src/index' },
+    { input: 'src/index', outDir: 'dist/', format: 'esm', ext: 'js' },
     // Preset
     { input: 'src/preset' },
+    { input: 'src/preview', outDir: 'dist/', format: 'esm', ext: 'js' },
     // Runtime dirs
-    { input: 'src/preview', outDir: 'dist/', ext: 'js' },
     {
       input: 'src/runtime/', outDir: 'dist/runtime', format: 'esm', ext: 'js',
     },
@@ -29,7 +29,6 @@ export default defineBuildConfig({
     '@unhead/vue',
     '@nuxt/devtools-kit',
     '#app/composables/state',
-
   ],
   failOnWarn: false,
 })

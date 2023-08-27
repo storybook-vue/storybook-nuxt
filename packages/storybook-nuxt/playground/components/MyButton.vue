@@ -22,8 +22,6 @@ const props = withDefaults(defineProps<{
    */
   backgroundColor?: string
 
-  union?: string | number | boolean
-
 }>(), { primary: false })
 
 const emit = defineEmits<{

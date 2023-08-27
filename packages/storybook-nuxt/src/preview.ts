@@ -1,3 +1,5 @@
+import type { App } from 'vue'
+
 const nuxtApp = () => import(('#app/entry')).then(m => m.default).catch(() => {})
 const c = console
 // inject nuxt root element
@@ -9,7 +11,7 @@ document.body.appendChild(root)
 const app = nuxtApp()
 
 app.then(async (m) => {
-  const vueApp = await m()
+  const vueApp: App = await m()
   c.log(' preview.ts app.then vueApp:', vueApp)
 }).catch(() => {})
 

@@ -10,11 +10,7 @@ const meta = {
   component: MyButton,
   // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
   tags: ['autodocs'],
-  argTypes: {
-    backgroundColor: { control: 'color' },
-    onClick: { action: 'clicked' },
-  },
-  args: { primary: false }, // default value
+
 } satisfies Meta<typeof MyButton>
 
 export default meta
@@ -26,11 +22,11 @@ type Story = StoryObj<typeof meta>
  */
 
 export const Primary: Story = {
-  args: { primary: true, label: 'Primary' },
+  args: { label: 'Primary' },
 }
 
 export const PreLink: Story = {
-  args: { primary: true, label: 'My Story' },
+  args: { label: 'My Story' },
   render: () => ({
     components: { MyPre },
     template: '<my-pre> Hello</my-pre>',

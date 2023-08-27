@@ -87,7 +87,7 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
   const nuxt: Nuxt = await loadNuxt({
     rootDir: baseConfig.root,
     ready: false,
-    dev: false,
+    dev: true,
   })
 
   if ((nuxt.options.builder as string) !== '@nuxt/vite-builder')
