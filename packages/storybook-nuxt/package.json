@@ -60,7 +60,7 @@
   },
   "peerDependencies": {
     "nuxt": "^3.6.5",
-    "vite": "^4.0.0",
+    "vite": "*",
     "vue": "^3.2.31"
   },
   "dependencies": {
