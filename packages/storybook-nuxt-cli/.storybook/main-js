@@ -1,0 +1,19 @@
+const config = {
+  stories: [
+    "$storiesPath/**/*.mdx",
+    "$storiesGlob",
+  ],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+  ],
+  framework: {
+    name: "@storybook-vue/nuxt",
+    options: {},
+  },
+  docs: {
+    autodocs: "tag",
+  },
+};
+export default config;

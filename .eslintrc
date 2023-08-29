@@ -4,7 +4,6 @@
         "es6": true,
         "node": true
     },
-   
     "extends": [
         "@antfu"
       ],

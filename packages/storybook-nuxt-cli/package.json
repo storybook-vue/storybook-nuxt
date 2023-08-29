@@ -1,21 +1,21 @@
 {
   "name": "storybook-nuxt",
-  "type": "module",
-  "version": "0.0.2-alpha.8",
-  "description": "Storybook CLI",
-  "license": "MIT",
-  "keywords": [
-    "storybook",
-    "cli",
-    "nuxt",
-    "vue"
-  ],
-  "bin": "./index.mjs",
-  "dependencies": {
-    "@storybook/cli": "npm:@storybook-nuxt/cli@7.4.0-alpha.8"
-
+  "version": "0.0.5-alpha.2",
+  "description": "Storybook init CLI for Nuxt ",
+  "author": "Chakas@",
+  "license": "ISC",
+  "keywords": ["storybook", "cli", "nuxt"],
+  "bin": {
+    "storybook-nuxt": "./index.js"
   },
-  "publishConfig": {
-    "access": "public"
+  "files": ["index.js", "init.js", ".storybook/*"],
+  "scripts": {
+    "test": "cd test-project && node ../index.js init"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "commander": "^11.0.0",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
   }
 }
