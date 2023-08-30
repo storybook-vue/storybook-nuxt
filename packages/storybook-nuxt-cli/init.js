@@ -106,7 +106,7 @@ function detectPackageManager() {
   else if (fs.existsSync(path.join(process.cwd(), 'pnpm-lock.yaml')))
     return 'pnpm'
 
-  return 'pnpm'
+  return 'npm'
 }
 
 function addScripts() {
