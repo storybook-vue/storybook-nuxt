@@ -11,5 +11,5 @@ const preview: Preview = {
     },
   },
 };
-c
+
 export default preview;
