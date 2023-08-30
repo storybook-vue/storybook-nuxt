@@ -62,7 +62,7 @@ function initStorybook() {
   const packageManager = detectPackageManager()
 
   // Install required packages using pnpm
-  const installProcess = spawn(packageManager, ['add',
+  const installProcess = spawn(packageManager, [packageManager === 'npm' ? 'install' : 'add',
     'storybook@next',
     '@storybook-vue/nuxt',
     '@storybook/vue3@next',
@@ -70,7 +70,7 @@ function initStorybook() {
     '@storybook/addon-interactions@next',
     '@storybook/addon-links@next',
     '@storybook/blocks@next',
-    '-D',
+    packageManager === 'npm' ? '--save-dev' : '-D',
   ], {
     cwd: projectRoot,
     stdio: 'inherit',
