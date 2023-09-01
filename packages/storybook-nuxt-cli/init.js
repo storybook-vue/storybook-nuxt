@@ -33,7 +33,7 @@ function initStorybook() {
     const extensions = isTypeScriptProject ? 'js|jsx|mjs|ts|tsx' : 'js|jsx|mjs'
         // Build the paths for stories based on the source folder
     const storiesPath = path.join(sourceFolder, '../stories')
-    const storiesGlob = `${storiesPath}/**/*.stories.(${extensions})`
+    const storiesGlob = `${storiesPath}/**/*.stories.@(${extensions})`
 
     // Load the main and preview template files
     const mainTemplatePath = path.join(__dirname, '.storybook', `main-${configFileExtension}`)
