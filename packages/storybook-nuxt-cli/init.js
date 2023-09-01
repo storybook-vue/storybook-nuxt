@@ -111,11 +111,18 @@ function addDevDependencies() {
     const devDependencies = {
         'storybook': 'next',
         '@storybook-vue/nuxt': 'next',
-        '@storybook/vue3': 'next',
         '@storybook/addon-essentials': 'next',
         '@storybook/addon-interactions': 'next',
         '@storybook/addon-links': 'next',
         '@storybook/blocks': 'next',
+        '@storybook/builder-vite': 'next',
+        '@storybook/testing-library': '^0.2.0',
+        '@storybook/vue3': 'next',
+        '@storybook/vue3-vite': 'next',
+        '@types/node': '^18.17.5',
+        'react': '^18.2.0',
+        'react-dom': '^18.2.0',
+
     }
     const packageJsonPath = path.join(process.cwd(), 'package.json')
     const packageJson = require(packageJsonPath)
@@ -153,27 +160,39 @@ function copyTemplateFiles(extension, storiesPath) {
     // Copy the template files to the project root
     const templateDir = path.join(require.resolve('@storybook-vue/nuxt'), '../../template/cli/', extension)
     const targetDir = path.join(process.cwd(), storiesPath)
-    if (!fs.existsSync(targetDir))
-        fs.mkdirSync(targetDir)
-    logger.log(' Copying template files...')
-    logger.log(` From ${templateDir}`, ` To ${targetDir}`)
-    fs.readdirSync(templateDir).forEach((file) => {
-        const filePath = path.join(templateDir, file)
-        const fileStats = fs.statSync(filePath)
-
-        if (fileStats.isFile())
-            fs.copyFileSync(filePath, path.join(targetDir, file))
-    })
+    copyFolderRecursive(templateDir, targetDir)
+        // Copy the common assets to the project root
+    const commonAssetsDir = path.join(__dirname, '.storybook', 'rendererAssets/common')
+    copyFolderRecursive(commonAssetsDir, targetDir)
 }
 
-function addResolutionsYarnPackageJson() {
-    const packageJsonPath = path.join(process.cwd(), 'package.json')
-    const packageJson = require(packageJsonPath)
-    if (packageJson) {
-        packageJson.resolutions = packageJson.resolutions || {
-            'wrap-ansi': '^6.2.0',
+function copyFolderRecursive(sourceFolder, destinationFolder) {
+    // Create the destination folder if it doesn't exist
+    if (!fs.existsSync(destinationFolder))
+        fs.mkdirSync(destinationFolder)
+
+    // Read the contents of the source folder
+    const files = fs.readdirSync(sourceFolder)
+
+    // Loop through the files in the source folder
+    for (const file of files) {
+        const sourceFilePath = path.join(sourceFolder, file)
+        const destinationFilePath = path.join(destinationFolder, file)
+
+        // Get the file's stats to check if it's a directory or a file
+        const stats = fs.statSync(sourceFilePath)
+
+        if (stats.isFile()) {
+            // If it's a file, copy it to the destination folder
+            fs.copyFileSync(sourceFilePath, destinationFilePath)
+        }
+ else if (stats.isDirectory()) {
+            // If it's a directory, recursively copy it
+            copyFolderRecursive(sourceFilePath, destinationFilePath)
         }
     }
 }
+
+// Usage example:
 
 module.exports = { initStorybook }

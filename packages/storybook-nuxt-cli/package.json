@@ -10,9 +10,9 @@
   },
   "files": ["index.js", "init.js", ".storybook/*"],
   "scripts": {
-    "test": "cd test-npm && node ../index.js init && npm storybook dev",
-    "test-pnpm": "cd test-pnpm && node ../index.js init && pnpm storybook dev",
-    "test-yarn": "cd test-yarn && node ../index.js init && yarn storybook dev"
+    "test": "cd test-npm && node ../index.js init && npm run storybook dev",
+    "test-pnpm": "cd test-pnpm && node ../index.js init && pnpm run storybook dev",
+    "test-yarn": "cd test-yarn && node ../index.js init && yarn run storybook dev"
 
   },
   "dependencies": {
