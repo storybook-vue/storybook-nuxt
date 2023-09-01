@@ -83,8 +83,10 @@ function initStorybook() {
     }
     else {
       logger.log(`${CHECKMARK} Packages installed successfully!`)
+
       addScripts(packageManager)
-      copyTemplateFiles(configFileExtension)
+      copyTemplateFiles(configFileExtension, storiesPath)
+
       logger.log()
       logger.log('✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨')
       logger.log('✨✨       🚀️ You can run storybook using           ✨✨')
@@ -128,11 +130,11 @@ function addScripts() {
   }
 }
 
-function copyTemplateFiles(extension) {
+function copyTemplateFiles(extension, storiesPath) {
   // Copy the template files to the project root
   const templateDir = path.join(require.resolve('@storybook-vue/nuxt'), '../../template/cli/', extension)
-  const targetDir = process.cwd()
-  logger.log('Copying template files...')
+  const targetDir = path.join(process.cwd(), storiesPath)
+  logger.log(' Copying template files...')
   logger.log(` From ${templateDir}`, ` To ${targetDir}`)
   fs.readdirSync(templateDir).forEach((file) => {
     const filePath = path.join(templateDir, file)
