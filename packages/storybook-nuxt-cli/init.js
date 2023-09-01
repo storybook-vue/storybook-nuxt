@@ -58,6 +58,7 @@ function initStorybook() {
   fs.writeFileSync(path.join(storybookDir, `preview.${configFileExtension}`), previewConfigContent)
 
   logger.log('Install dependencies 📦️')
+  logger.log()
 
   const packageManager = detectPackageManager()
 
@@ -83,6 +84,7 @@ function initStorybook() {
     else {
       logger.log(`${CHECKMARK} Packages installed successfully!`)
       addScripts(packageManager)
+      copyTemplateFiles(configFileExtension)
       logger.log()
       logger.log('✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨')
       logger.log('✨✨       🚀️ You can run storybook using           ✨✨')
@@ -117,13 +119,28 @@ function addScripts() {
   if (packageJson) {
     packageJson.scripts = packageJson.scripts || {}
     packageJson.scripts.storybook = 'storybook dev --port 6006'
-    packageJson.scripts.buildStorybook = 'storybook build'
+    packageJson.scripts['build-storybook'] = 'storybook build'
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
     logger.log(`${CHECKMARK} Storybook scripts added to package.json `)
   }
   else {
     logger.log(`${CROSSMARK} Sorry, this feature is currently only supported with pnpm.`)
   }
+}
+
+function copyTemplateFiles(extension) {
+  // Copy the template files to the project root
+  const templateDir = path.join(require.resolve('@storybook-vue/nuxt'), '../../template/cli/', extension)
+  const targetDir = process.cwd()
+  logger.log('Copying template files...')
+  logger.log(` From ${templateDir}`, ` To ${targetDir}`)
+  fs.readdirSync(templateDir).forEach((file) => {
+    const filePath = path.join(templateDir, file)
+    const fileStats = fs.statSync(filePath)
+
+    if (fileStats.isFile())
+      fs.copyFileSync(filePath, path.join(targetDir, file))
+  })
 }
 
 module.exports = { initStorybook }
