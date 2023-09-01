@@ -10,7 +10,10 @@
   },
   "files": ["index.js", "init.js", ".storybook/*"],
   "scripts": {
-    "test": "cd playground && node ../index.js init"
+    "test": "cd playground && node ../index.js init && pnpm storybook dev",
+    "test-pnpm": "cd test-pnpm && node ../index.js init && pnpm storybook dev",
+    "test-yarn": "cd test-yarn && node ../index.js init && yarn storybook dev"
+
   },
   "dependencies": {
     "child_process": "^1.0.2",
