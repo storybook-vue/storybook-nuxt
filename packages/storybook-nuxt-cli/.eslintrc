@@ -1,0 +1,12 @@
+ {
+    "env": {
+        "node": true
+    },
+      "rules": {
+        "vue/no-v-text-v-html-on-component": "off",
+        "n/prefer-global/process": "off",
+        "strict": "off",
+        "indent": "off"
+        
+      }
+}

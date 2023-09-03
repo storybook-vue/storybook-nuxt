@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+/* eslint-disable eol-last */
+
+/* eslint-disable @typescript-eslint/brace-style */
+
 /* eslint-disable @typescript-eslint/indent */
 
 const fs = require('node:fs')
@@ -10,6 +14,7 @@ const console = require('node:console')
 // Unicode icons for better display
 const CHECKMARK = '\u2714' // ✔
 const CROSSMARK = '\u274C' // ❌
+
 const logger = console
 
 function initStorybook() {
@@ -74,8 +79,7 @@ function initStorybook() {
     installProcess.on('close', (code) => {
         if (code !== 0) {
             logger.error(`${CROSSMARK} Package installation failed with code ${code}`)
-        }
- else {
+        } else {
             logger.log(`${CHECKMARK} Packages installed successfully!`)
 
             addScripts(packageManager)
@@ -133,8 +137,7 @@ function addDevDependencies() {
         })
         fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
         logger.log(`${CHECKMARK} Storybook devDependencies added to package.json `)
-    }
- else {
+    } else {
         logger.log(`${CROSSMARK} Sorry, this feature is currently only supported with pnpm.`)
     }
 }
@@ -150,15 +153,15 @@ function addScripts() {
         packageJson.scripts['build-storybook'] = 'storybook build'
         fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
         logger.log(`${CHECKMARK} Storybook scripts added to package.json `)
-    }
- else {
+    } else {
         logger.log(`${CROSSMARK} Sorry, this feature is currently only supported with pnpm.`)
     }
 }
 
-function copyTemplateFiles(extension, storiesPath) {
+async function copyTemplateFiles(extension, storiesPath) {
     // Copy the template files to the project root
-    const templateDir = path.join(require.resolve('@storybook-vue/nuxt'), '../../template/cli/', extension)
+    const packagePath = await getPackageDir('@storybook-vue/nuxt')
+    const templateDir = path.join(packagePath, 'template', 'cli', extension)
     const targetDir = path.join(process.cwd(), storiesPath)
     copyFolderRecursive(templateDir, targetDir)
         // Copy the common assets to the project root
@@ -185,8 +188,7 @@ function copyFolderRecursive(sourceFolder, destinationFolder) {
         if (stats.isFile()) {
             // If it's a file, copy it to the destination folder
             fs.copyFileSync(sourceFilePath, destinationFilePath)
-        }
- else if (stats.isDirectory()) {
+        } else if (stats.isDirectory()) {
             // If it's a directory, recursively copy it
             copyFolderRecursive(sourceFilePath, destinationFilePath)
         }
@@ -194,5 +196,22 @@ function copyFolderRecursive(sourceFolder, destinationFolder) {
 }
 
 // Usage example:
+async function getPackageDir(frameworkPackageName) {
+    const packageJsonPath = path.join(frameworkPackageName, 'package.json')
+
+    const errors = []
+
+    try {
+        return path.dirname(
+            require.resolve(packageJsonPath, {
+                paths: [process.cwd()],
+            }),
+        )
+    } catch (e) {
+        errors.push(e)
+    }
+
+    throw new Error(`Cannot find ${packageJsonPath}, ${errors.map(e => e.stack).join('\n\n')}`)
+}
 
 module.exports = { initStorybook }

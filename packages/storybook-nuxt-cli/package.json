@@ -1,6 +1,6 @@
 {
   "name": "storybook-nuxt",
-  "version": "0.0.5-alpha.6",
+  "version": "0.0.6-alpha.2",
   "description": "Storybook init CLI for Nuxt ",
   "author": "Chakas@",
   "license": "ISC",
@@ -8,7 +8,7 @@
   "bin": {
     "storybook-nuxt": "./index.js"
   },
-  "files": ["index.js", "init.js", ".storybook/*"],
+  "files": ["index.js", "init.js", ".storybook/**/*"],
   "scripts": {
     "test": "cd test-npm &&  node ../index.js init && npm run storybook dev",
     "test-pnpm": "cd test-pnpm && node ../index.js init && pnpm run storybook dev",

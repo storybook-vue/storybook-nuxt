@@ -25,6 +25,7 @@
     "**/clones",
     "**/docs",
     "./packages/**/playground",
+    "./packages/storybook-nuxt-cli/**/*",
     "./packages/devtools/client",
     "./playgrounds/my-nuxt-ap"
   ]
