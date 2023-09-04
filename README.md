@@ -6,9 +6,9 @@
 
 Storybook package for [**Nuxt framework**](https://nuxt.com/) with zero configs. seamless integration supporting all Nuxt fancy features 
 
-<iframe src="https://www.veed.io/embed/1f9d58b6-3c76-43a1-a15e-ae95af8dff5f" width="744" height="504" frameborder="0" title="storybook-nuxt-3" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
 https://github.com/storybook-vue/nuxt/assets/711292/e66a1899-ab7c-42dd-b358-59e22ff0f609
+
+https://www.veed.io/embed/1f9d58b6-3c76-43a1-a15e-ae95af8dff5f
 
 
 ## Demos 
