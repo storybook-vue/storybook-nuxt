@@ -196,7 +196,7 @@ function copyFolderRecursive(sourceFolder, destinationFolder) {
 }
 
 // Usage example:
-async function getPackageDir(frameworkPackageName) {
+export async function getPackageDir(frameworkPackageName) {
     const packageJsonPath = path.join(frameworkPackageName, 'package.json')
 
     const errors = []
