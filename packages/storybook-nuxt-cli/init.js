@@ -69,7 +69,7 @@ function initStorybook(start = false) {
     logger.log()
 
     const packageManager = detectPackageManager()
-    logger.log(`Using ${packageManager} to install dependencies...`)
+
     addDevDependencies()
         // Install required packages using pnpm
     const installProcess = spawn(packageManager, ['install'], {
@@ -87,12 +87,7 @@ function initStorybook(start = false) {
             copyTemplateFiles(configFileExtension, path.join(sourceFolder, 'stories'))
 
             logger.log()
-            logger.log('✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨')
-            logger.log('✨✨       🚀️ You can run storybook using           ✨✨')
-            logger.log('✨                                                    ✨')
-            logger.log(`✨            ${packageManager} storybook dev                      ✨`)
-            logger.log('✨                                                    ✨')
-            logger.log('✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨')
+            logger.log('�� Storybook is ready to go! 🚀')
             logger.log()
             if (start) {
                 const startProcess = spawn(packageManager, ['storybook', 'dev'], {
@@ -212,9 +207,8 @@ function copyFolderRecursive(sourceFolder, destinationFolder) {
 // Usage example:
 async function getPackageDir(frameworkPackageName) {
     const packageJsonPath = path.join(frameworkPackageName, 'package.json')
-        // const packageDir = resolve(fileURLToPath(
-        //     import.meta.url), '../..')
-    console.log({ packageJsonPath })
+
+    console.log({ frameworkPackageName })
 
     const errors = []
 
