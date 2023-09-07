@@ -14,11 +14,12 @@ const console = require('node:console')
 // Unicode icons for better display
 const CHECKMARK = '\u2714' // ✔
 const CROSSMARK = '\u274C' // ❌
+const STARTMARK = '\u25B6' // ▶
 
 const logger = console
 
-function initStorybook() {
-    logger.log('Initializing Storybook configuration...')
+function initStorybook(start = false) {
+    logger.log(`${STARTMARK} Initializing Storybook configuration...`)
     logger.log()
         // Path to the project root
     const projectRoot = process.cwd()
@@ -68,7 +69,7 @@ function initStorybook() {
     logger.log()
 
     const packageManager = detectPackageManager()
-
+    logger.log(`Using ${packageManager} to install dependencies...`)
     addDevDependencies()
         // Install required packages using pnpm
     const installProcess = spawn(packageManager, ['install'], {
@@ -93,6 +94,19 @@ function initStorybook() {
             logger.log('✨                                                    ✨')
             logger.log('✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨')
             logger.log()
+            if (start) {
+                const startProcess = spawn(packageManager, ['storybook', 'dev'], {
+                    cwd: projectRoot,
+                    stdio: 'inherit',
+                })
+
+                startProcess.on('close', (code) => {
+                    if (code !== 0)
+                        logger.error(`${CROSSMARK} Storybook failed to start with code ${code}`)
+                    else
+                        logger.log(`${CHECKMARK} Storybook started successfully!`)
+                })
+            }
         }
     })
 }
@@ -122,7 +136,7 @@ function addDevDependencies() {
         '@storybook/builder-vite': 'next',
         '@storybook/testing-library': '^0.2.0',
         '@storybook/vue3': 'next',
-        '@storybook/vue3-vite': 'next',
+        // '@storybook/vue3-vite': 'next',
         '@types/node': '^18.17.5',
         'react': '^18.2.0',
         'react-dom': '^18.2.0',
@@ -196,8 +210,11 @@ function copyFolderRecursive(sourceFolder, destinationFolder) {
 }
 
 // Usage example:
-export async function getPackageDir(frameworkPackageName) {
+async function getPackageDir(frameworkPackageName) {
     const packageJsonPath = path.join(frameworkPackageName, 'package.json')
+        // const packageDir = resolve(fileURLToPath(
+        //     import.meta.url), '../..')
+    console.log({ packageJsonPath })
 
     const errors = []
 

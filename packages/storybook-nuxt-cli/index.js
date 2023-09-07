@@ -11,9 +11,10 @@ const { initStorybook } = require('./init')
 program
     .command('init')
     .description('Initialize the Storybook configuration')
-    .action(() => {
+    .option('-s, --start', 'Start Storybook after initialization')
+    .action((options) => {
         // ... perform the initialization ...
-        initStorybook()
+        initStorybook(Boolean(options.start))
     })
 
 // Parse command-line arguments
