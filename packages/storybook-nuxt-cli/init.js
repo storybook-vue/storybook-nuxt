@@ -18,7 +18,7 @@ const STARTMARK = '\u25B6' // ▶
 
 const logger = console
 
-function initStorybook(start = false) {
+function initStorybook(start = false, port = 6006, ci = true) {
     logger.log(`${STARTMARK} Initializing Storybook configuration...`)
     logger.log()
         // Path to the project root
@@ -90,7 +90,7 @@ function initStorybook(start = false) {
             logger.log('�� Storybook is ready to go! 🚀')
             logger.log()
             if (start) {
-                const startProcess = spawn(packageManager, ['storybook', 'dev'], {
+                const startProcess = spawn(packageManager, ['storybook', 'dev', '--port', port, '--ci'], {
                     cwd: projectRoot,
                     stdio: 'inherit',
                 })
@@ -123,7 +123,7 @@ function detectPackageManager() {
 function addDevDependencies() {
     const devDependencies = {
         'storybook': 'next',
-        '@storybook-vue/nuxt': 'next',
+        '@storybook-vue/nuxt': 'rc',
         '@storybook/addon-essentials': 'next',
         '@storybook/addon-interactions': 'next',
         '@storybook/addon-links': 'next',
@@ -207,9 +207,6 @@ function copyFolderRecursive(sourceFolder, destinationFolder) {
 // Usage example:
 async function getPackageDir(frameworkPackageName) {
     const packageJsonPath = path.join(frameworkPackageName, 'package.json')
-
-    console.log({ frameworkPackageName })
-
     const errors = []
 
     try {

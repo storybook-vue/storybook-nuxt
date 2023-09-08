@@ -12,6 +12,9 @@ program
     .command('init')
     .description('Initialize the Storybook configuration')
     .option('-s, --start', 'Start Storybook after initialization')
+    .option('-p, --port <port>', 'Port to run Storybook on', 6006)
+    .option('-c, --ci', 'Run in CI mode') // avoid interactive prompts and browser opening
+    .argument('[port]', 'Port to run Storybook on', 6006)
     .action((options) => {
         // ... perform the initialization ...
         initStorybook(Boolean(options.start))
