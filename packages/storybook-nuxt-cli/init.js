@@ -87,10 +87,10 @@ function initStorybook(start = false, port = 6006, ci = true) {
             copyTemplateFiles(configFileExtension, path.join(sourceFolder, 'stories'))
 
             logger.log()
-            logger.log('�� Storybook is ready to go! 🚀')
+            logger.log('📕 Storybook is ready to go! 🚀')
             logger.log()
             if (start) {
-                const startProcess = spawn(packageManager, ['storybook', 'dev', '--port', port, '--ci'], {
+                const startProcess = spawn(packageManager, ['storybook', 'dev', '--ci', '--port', `${port}`], {
                     cwd: projectRoot,
                     stdio: 'inherit',
                 })
