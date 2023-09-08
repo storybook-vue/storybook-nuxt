@@ -20,7 +20,7 @@ or  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/sto
 - Demo with more plugins [i18n+pinia](https://github.com/chakAs3/nuxt-sb-app) try it on [Stackblitz](https://stackblitz.com/~/github.com/chakAs3/nuxt-sb-app)
 - Full Demo [i18n, Pinia, Composables,Vuetify,and Routing](https://github.com/storybook-vue/storybook-nuxt-starter)  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/storybook-nuxt-starter)
 
-## use Storybook module for setup:
+## Storybook module for setup:
 
 Storybook Nuxt-Module repo https://github.com/storybook-vue/nuxt-storybook
 
