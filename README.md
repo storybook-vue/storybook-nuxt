@@ -21,9 +21,9 @@ or  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/sto
 
 ## Storybook module for setup:
 
-Storybook Nuxt-Module repo https://github.com/storybook-vue/nuxt-storybook
+[Nuxt-Module](https://github.com/storybook-vue/nuxt-storybook)
 
-Storybook Nuxt-Module demo https://github.com/chakAs3/nuxt-storybook-module-demo
+[Nuxt-Module Demo](https://github.com/chakAs3/nuxt-storybook-module-demo)
 
 ## Supported Features
 
