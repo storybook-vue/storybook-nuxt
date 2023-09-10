@@ -1,6 +1,6 @@
 {
   "name": "storybook-nuxt",
-  "version": "0.1.0-rc.2",
+  "version": "0.1.0-rc.4",
   "description": "Storybook init CLI for Nuxt ",
   "author": "Chakas@",
   "license": "ISC",
@@ -18,9 +18,9 @@
   "scripts": {
     "build": "unbuild",
     "stub": "unbuild --stub",
-    "dev:prepare": "stub && pnpm build && pnpm test",
+    "dev:prepare": "stub && build && test",
     "dev": "build && test",
-    "prepublishOnly": "build",
+    "prepublishOnly": "pnpm run build",
     "test": "cd playground &&  node ../index.mjs init "
   },
   "dependencies": {
