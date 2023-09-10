@@ -18,9 +18,10 @@
   "scripts": {
     "build": "unbuild",
     "stub": "unbuild --stub",
-    "dev:prepare": "nr stub",
+    "dev:prepare": "stub && pnpm build && pnpm test",
+    "dev": "pnpm build && pnpm test",
     "prepublishOnly": "pnpm build",
-    "test": "cd test-npm &&  node ../index.mjs init && npm run storybook dev",
+    "test": "cd test-pnpm &&  node ../index.mjs init ",
     "test-pnpm": "cd test-pnpm && node ../index.mjs init --start ",
     "test-yarn": "cd test-yarn && node ../index.mjs init  "
   },

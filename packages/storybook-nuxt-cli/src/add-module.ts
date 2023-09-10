@@ -1,11 +1,12 @@
 import { existsSync } from 'node:fs'
 import fsp from 'node:fs/promises'
 import { relative } from 'node:path'
+import { cwd } from 'node:process'
 import { consola } from 'consola'
 import c from 'picocolors'
 import { parseModule } from 'magicast'
 import { diffLines } from 'diff'
-import { join } from 'pathe'
+import path, { join } from 'pathe'
 import prompts from 'prompts'
 
 export async function addModuleToNuxtConfigFile(moduleName, cwd) {
@@ -102,4 +103,41 @@ function printDiffToCLI(from, to) {
   }
 
   consola.log(output.trimEnd())
+}
+
+export async function updatePackageJsonFile(targetFile, devDependencies) {
+  try {
+    const packageJsonPath = path.join(process.cwd(), 'package.json')
+    const source = await fsp.readFile(packageJsonPath, 'utf-8')
+
+    const packageJson = source ? JSON.parse(source) : {}
+
+    packageJson.devDependencies ||= []
+    if (typeof packageJson.devDependencies === 'object') {
+      for (const [name, version] of Object.entries(devDependencies))
+        packageJson.devDependencies[name] = version
+    }
+
+    const generated = JSON.stringify(packageJson, null, 2)
+
+    if (source.trim() === generated.trim()) {
+      consola.info(c.yellow('x'))
+    }
+    else {
+      consola.log('')
+      consola.log('We are going to update package.json with the following changes:')
+      consola.log(c.bold(c.green(`./${relative(cwd(), targetFile)}`)))
+      consola.log('')
+      printDiffToCLI(source, generated)
+      consola.log('')
+
+      await fsp.writeFile(targetFile, `${generated.trimEnd()}\n`, 'utf-8')
+    }
+  }
+  catch (err) {
+    consola.error(c.red('Unable to update package.json file automatically'), err)
+    process.exitCode = 1
+
+    return false
+  }
 }

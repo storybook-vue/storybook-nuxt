@@ -6,7 +6,7 @@ import path from 'node:path'
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
-import { addModuleToNuxtConfigFile } from './add-module'
+import { addModuleToNuxtConfigFile, updatePackageJsonFile } from './add-module'
 
 // Unicode icons for better display
 const CHECKMARK = '\u2714' // ✔
@@ -139,20 +139,7 @@ async function addDevDependencies() {
   }
 
   const packageJsonPath = path.join(process.cwd(), 'package.json')
-  const source = await fsp.readFile(packageJsonPath, 'utf-8')
-  const packageJson = JSON.parse(source)
-
-  if (packageJson) {
-    packageJson.devDependencies = packageJson.devDependencies || {}
-    Object.keys(devDependencies).forEach((key) => {
-      packageJson.devDependencies[key] = devDependencies[key]
-    })
-    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2))
-    logger.log(`${CHECKMARK} Storybook devDependencies added to package.json `)
-  }
-  else {
-    logger.log(`${CROSSMARK} Sorry, this feature is currently only supported with pnpm.`)
-  }
+  updatePackageJsonFile(packageJsonPath, devDependencies)
 }
 
 async function addScripts() {
