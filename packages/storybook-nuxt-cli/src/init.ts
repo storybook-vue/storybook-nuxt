@@ -181,7 +181,8 @@ async function copyTemplateFiles(extension, storiesPath) {
   const targetDir = path.join(process.cwd(), storiesPath)
   copyFolderRecursive(templateDir, targetDir)
   // Copy the common assets to the project root
-  const commonAssetsDir = path.join('..', '.storybook', 'rendererAssets/common')
+  const rootDir = path.join(fileURLToPath(import.meta.url), '../..')
+  const commonAssetsDir = path.join(rootDir, '.storybook', 'rendererAssets/common')
   copyFolderRecursive(commonAssetsDir, targetDir)
 }
 
