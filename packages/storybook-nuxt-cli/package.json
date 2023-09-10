@@ -21,9 +21,7 @@
     "dev:prepare": "stub && pnpm build && pnpm test",
     "dev": "pnpm build && pnpm test",
     "prepublishOnly": "pnpm build",
-    "test": "cd test-pnpm &&  node ../index.mjs init ",
-    "test-pnpm": "cd test-pnpm && node ../index.mjs init --start ",
-    "test-yarn": "cd test-yarn && node ../index.mjs init  "
+    "test": "cd playground &&  node ../index.mjs init "
   },
   "dependencies": {
     "child_process": "^1.0.2",
