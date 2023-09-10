@@ -1,0 +1,12 @@
+{
+  "publishedPackages": [
+    {
+      "name": "@storybook-vue/nuxt",
+      "version": "0.1.0-rc.0"
+    },
+    {
+      "name": "storybook-nuxt",
+      "version": "0.1.0-rc.0"
+    }
+  ]
+}
