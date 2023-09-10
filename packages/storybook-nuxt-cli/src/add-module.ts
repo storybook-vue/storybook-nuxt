@@ -7,7 +7,6 @@ import c from 'picocolors'
 import { parseModule } from 'magicast'
 import { diffLines } from 'diff'
 import path, { join } from 'pathe'
-import prompts from 'prompts'
 
 export async function addModuleToNuxtConfigFile(moduleName, cwd) {
   const nuxtConfig = findNuxtConfig(cwd)
@@ -42,15 +41,15 @@ export async function addModuleToNuxtConfigFile(moduleName, cwd) {
       printDiffToCLI(source, generated)
       consola.log('')
 
-      const { confirm } = await prompts({
-        type: 'confirm',
-        name: 'confirm',
-        message: 'Continue?',
-        initial: false,
-      })
+      //   const { confirm } = await prompts({
+      //     type: 'confirm',
+      //     name: 'confirm',
+      //     message: 'Continue?',
+      //     initial: false,
+      //   })
 
-      if (!confirm)
-        return false
+      //   if (!confirm)
+      //     return false
 
       await fsp.writeFile(nuxtConfig, `${generated.trimEnd()}\n`, 'utf-8')
     }
