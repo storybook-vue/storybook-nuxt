@@ -221,8 +221,6 @@ async function getPackageDir(frameworkPackageName) {
     const require = createRequire(import.meta.url)
     const packageDir = path.dirname(require.resolve(path.join(frameworkPackageName, 'package.json'), { paths: [process.cwd()] }))
 
-    logger.log('### packageDir ##:', packageDir)
-
     return packageDir
   }
   catch (e) {
