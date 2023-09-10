@@ -125,7 +125,7 @@ export async function updatePackageJsonFile(devDependencies) {
     }
     else {
       consola.log('')
-      consola.log(`We are going to update ${c.bgBlue('package.json')} with the following changes:`)
+      consola.log(`We are going to update ${c.blue('package.json')} with the following changes:`)
       consola.log(c.bold(c.green(`./${relative(cwd(), packageJsonPath)}`)))
       consola.log('')
       printDiffToCLI(source, generated)

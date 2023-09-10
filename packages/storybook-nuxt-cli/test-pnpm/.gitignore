@@ -9,6 +9,9 @@ dist
 # Node dependencies
 node_modules
 
+stories
+.storybook
+
 # Logs
 logs
 *.log
