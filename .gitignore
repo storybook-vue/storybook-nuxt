@@ -26,3 +26,25 @@ logs
 !.env.example
 # If you need to ignore a file that is not in .gitignore
 packages/cli
+packages/storybook-nuxt-cli/test-pnpm/package.json
+packages/storybook-nuxt-cli/test-pnpm/.storybook/main.ts
+packages/storybook-nuxt-cli/test-pnpm/.storybook/preview.ts
+packages/storybook-nuxt-cli/test-pnpm/stories/button.css
+packages/storybook-nuxt-cli/test-pnpm/stories/Configure.mdx
+packages/storybook-nuxt-cli/test-pnpm/stories/header.css
+packages/storybook-nuxt-cli/test-pnpm/stories/MyNuxtWelcome.stories.ts
+packages/storybook-nuxt-cli/test-pnpm/stories/MyWelcome.vue
+packages/storybook-nuxt-cli/test-pnpm/stories/page.css
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/accessibility.svg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/assets.jpg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/checkmark.svg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/chromatic.svg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/context.jpg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/discord.svg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/document.svg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/figma.svg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/github.svg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/styling.jpg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/tutorials.svg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/typography.svg
+packages/storybook-nuxt-cli/test-pnpm/stories/assets/youtube.svg
