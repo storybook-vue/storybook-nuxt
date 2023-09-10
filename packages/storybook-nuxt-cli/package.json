@@ -1,24 +1,48 @@
 {
   "name": "storybook-nuxt",
-  "version": "0.0.6-rc.7",
+  "version": "0.0.6-rc.9",
   "description": "Storybook init CLI for Nuxt ",
   "author": "Chakas@",
   "license": "ISC",
   "keywords": ["storybook", "cli", "nuxt"],
   "bin": {
-    "storybook-nuxt": "./index.js"
+    "storybook-nuxt": "./index.mjs"
   },
-  "files": ["index.js", "init.js", ".storybook/**/*"],
+  "files": [
+    ".storybook/**/*",
+    "dist",
+    "*.d.ts",
+    "*.cjs",
+    "*.mjs"
+  ],
   "scripts": {
-    "test": "cd test-npm &&  node ../index.js init && npm run storybook dev",
-    "test-pnpm": "cd test-pnpm && node ../index.js init --start ",
-    "test-yarn": "cd test-yarn && node ../index.js init  "
-
+    "build": "unbuild",
+    "stub": "unbuild --stub",
+    "dev:prepare": "nr stub",
+    "prepublishOnly": "pnpm build",
+    "test": "cd test-npm &&  node ../index.mjs init && npm run storybook dev",
+    "test-pnpm": "cd test-pnpm && node ../index.mjs init --start ",
+    "test-yarn": "cd test-yarn && node ../index.mjs init  "
   },
   "dependencies": {
     "child_process": "^1.0.2",
     "commander": "^11.0.0",
-    "fs": "0.0.1-security",
-    "path": "^0.12.7"
+    "consola": "^3.2.3",
+    "diff": "^5.1.0",
+    "execa": "^7.2.0",
+    "global-dirs": "^3.0.1",
+    "magicast": "^0.2.10",
+    "pathe": "^1.1.1",
+    "picocolors": "^1.0.0",
+    "pkg-types": "^1.0.3",
+    "prompts": "^2.4.2",
+    "rc9": "^2.1.1",
+    "semver": "^7.5.4"
+  },
+  "devDependencies": {
+    "@types/diff": "^5.0.3",
+    "@types/prompts": "^2.4.4",
+    "unbuild": "^1.2.1"
   }
+
 }
