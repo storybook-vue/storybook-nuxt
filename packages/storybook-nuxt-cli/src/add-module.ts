@@ -105,7 +105,7 @@ function printDiffToCLI(from, to) {
   consola.log(output.trimEnd())
 }
 
-export async function updatePackageJsonFile(targetFile, devDependencies) {
+export async function updatePackageJsonFile(devDependencies) {
   try {
     const packageJsonPath = path.join(process.cwd(), 'package.json')
     const source = await fsp.readFile(packageJsonPath, 'utf-8')
@@ -125,13 +125,13 @@ export async function updatePackageJsonFile(targetFile, devDependencies) {
     }
     else {
       consola.log('')
-      consola.log('We are going to update package.json with the following changes:')
-      consola.log(c.bold(c.green(`./${relative(cwd(), targetFile)}`)))
+      consola.log(`We are going to update ${c.bgBlue('package.json')} with the following changes:`)
+      consola.log(c.bold(c.green(`./${relative(cwd(), packageJsonPath)}`)))
       consola.log('')
       printDiffToCLI(source, generated)
       consola.log('')
 
-      await fsp.writeFile(targetFile, `${generated.trimEnd()}\n`, 'utf-8')
+      await fsp.writeFile(packageJsonPath, `${generated.trimEnd()}\n`, 'utf-8')
     }
   }
   catch (err) {

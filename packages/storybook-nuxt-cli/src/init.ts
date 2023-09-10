@@ -138,8 +138,7 @@ async function addDevDependencies() {
     'react-dom': '^18.2.0',
   }
 
-  const packageJsonPath = path.join(process.cwd(), 'package.json')
-  updatePackageJsonFile(packageJsonPath, devDependencies)
+  updatePackageJsonFile(devDependencies)
 }
 
 async function addScripts() {
