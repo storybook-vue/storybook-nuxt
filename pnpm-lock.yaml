@@ -171,9 +171,48 @@ importers:
       '@nuxt/devtools':
         specifier: latest
         version: 0.8.3(nuxt@3.6.5)(rollup@3.28.1)(vite@4.4.9)
+      '@storybook-vue/nuxt':
+        specifier: rc
+        version: link:../../storybook-nuxt
+      '@storybook-vue/nuxt-storybook':
+        specifier: rc
+        version: 0.0.1-rc.6(nuxt@3.6.5)(rollup@3.28.1)(vite@4.4.9)
+      '@storybook/addon-essentials':
+        specifier: next
+        version: 7.5.0-alpha.1(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/addon-interactions':
+        specifier: next
+        version: 7.5.0-alpha.1(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/addon-links':
+        specifier: next
+        version: 7.5.0-alpha.1(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/blocks':
+        specifier: next
+        version: 7.5.0-alpha.1(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/builder-vite':
+        specifier: next
+        version: 7.5.0-alpha.1(typescript@4.9.5)(vite@4.4.9)
+      '@storybook/testing-library':
+        specifier: ^0.2.0
+        version: 0.2.0
+      '@storybook/vue3':
+        specifier: next
+        version: 7.5.0-alpha.1(@vue/compiler-core@3.3.4)(vue@3.3.4)
+      '@types/node':
+        specifier: ^18.17.5
+        version: 18.17.5
       nuxt:
         specifier: ^3.6.5
         version: 3.6.5(@types/node@18.17.5)(eslint@8.48.0)(rollup@3.28.1)(typescript@4.9.5)(vue-tsc@1.8.8)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      storybook:
+        specifier: next
+        version: 7.5.0-alpha.1
 
   packages/storybook-nuxt/playground:
     devDependencies:
@@ -2840,6 +2879,22 @@ packages:
       - supports-color
     dev: true
 
+  /@nuxt/devtools-kit@0.8.2(nuxt@3.6.5)(rollup@3.28.1)(vite@4.4.9):
+    resolution: {integrity: sha512-GEqpBxa/ojfhAM9HN5L/OzCADpfH9nDbcC7INHFgao6KuAu6JclTpcuV6VZP6LthsETBsd2cKAt93WY+vEJnnQ==}
+    peerDependencies:
+      nuxt: ^3.6.5
+      vite: '*'
+    dependencies:
+      '@nuxt/kit': 3.7.1(rollup@3.28.1)
+      '@nuxt/schema': 3.7.1(rollup@3.28.1)
+      execa: 7.2.0
+      nuxt: 3.6.5(@types/node@18.17.5)(eslint@8.48.0)(rollup@3.28.1)(typescript@4.9.5)(vue-tsc@1.8.8)
+      vite: 4.4.9(@types/node@18.17.5)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
   /@nuxt/devtools-kit@0.8.3(nuxt@3.6.5)(rollup@3.28.1)(vite@4.4.9):
     resolution: {integrity: sha512-qF5xJSvGzPMcWNTSPOpCWQfoDVqR+S56Ux/ZTm2nydHsXkJfS2k2iztJfbHlPquWdH4uS3lVxcfF4CFtgdJqkw==}
     peerDependencies:
@@ -4361,6 +4416,20 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
+  /@storybook-vue/nuxt-storybook@0.0.1-rc.6(nuxt@3.6.5)(rollup@3.28.1)(vite@4.4.9):
+    resolution: {integrity: sha512-jL2yBsWJFinnv/1WUAWq3+wSlo+LQR9auIBUOA26qoyHX4N8fjzCesz5zfF+Klp1VObkyRtDzmAB/tL6RddtNw==}
+    dependencies:
+      '@nuxt/devtools-kit': 0.8.2(nuxt@3.6.5)(rollup@3.28.1)(vite@4.4.9)
+      '@nuxt/kit': 3.7.1(rollup@3.28.1)
+      consola: 3.2.3
+      get-port-please: 3.0.2
+    transitivePeerDependencies:
+      - nuxt
+      - rollup
+      - supports-color
+      - vite
+    dev: true
+
   /@storybook/addon-actions@7.5.0-alpha.1(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-qk0/1tTOwJpIQz1EOpvrRMRZ8gv8VImsL6mY6POQB2hjfwTBnShURPwniwHCdEZw+kYn9G4C74kBC0P0V20wiA==}
     peerDependencies:
@@ -4746,6 +4815,47 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+
+  /@storybook/builder-vite@7.5.0-alpha.1(typescript@4.9.5)(vite@4.4.9):
+    resolution: {integrity: sha512-LX5o4E68JbXpjaRfboPZh1kBPyjT6q70UtZyF8eiU18Bi2en8g2ERN5Rl7ZBbe0majM9HEtd5xPfBgyHNIEhQw==}
+    peerDependencies:
+      '@preact/preset-vite': '*'
+      typescript: '>= 4.3.x'
+      vite: ^3.0.0 || ^4.0.0
+      vite-plugin-glimmerx: '*'
+    peerDependenciesMeta:
+      '@preact/preset-vite':
+        optional: true
+      typescript:
+        optional: true
+      vite-plugin-glimmerx:
+        optional: true
+    dependencies:
+      '@storybook/channels': 7.5.0-alpha.1
+      '@storybook/client-logger': 7.5.0-alpha.1
+      '@storybook/core-common': 7.5.0-alpha.1
+      '@storybook/csf-plugin': 7.5.0-alpha.1
+      '@storybook/mdx2-csf': 1.1.0
+      '@storybook/node-logger': 7.5.0-alpha.1
+      '@storybook/preview': 7.5.0-alpha.1
+      '@storybook/preview-api': 7.5.0-alpha.1
+      '@storybook/types': 7.5.0-alpha.1
+      '@types/find-cache-dir': 3.2.1
+      browser-assert: 1.2.1
+      es-module-lexer: 0.9.3
+      express: 4.18.2
+      find-cache-dir: 3.3.2
+      fs-extra: 11.1.1
+      magic-string: 0.30.3
+      remark-external-links: 8.0.0
+      remark-slug: 6.1.0
+      rollup: 3.28.1
+      typescript: 4.9.5
+      vite: 4.4.9(@types/node@18.17.5)
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: true
 
   /@storybook/builder-vite@7.5.0-alpha.1(typescript@5.1.3)(vite@4.4.9):
     resolution: {integrity: sha512-LX5o4E68JbXpjaRfboPZh1kBPyjT6q70UtZyF8eiU18Bi2en8g2ERN5Rl7ZBbe0majM9HEtd5xPfBgyHNIEhQw==}

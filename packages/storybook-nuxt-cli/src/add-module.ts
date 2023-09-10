@@ -25,7 +25,7 @@ export async function addModuleToNuxtConfigFile(moduleName, cwd) {
       : mod.exports.default
 
     config.modules ||= []
-    if (typeof config.modules === 'object')
+    if (typeof config.modules === 'object' && !config.modules.includes(moduleName))
       config.modules.push(moduleName)
 
     const generated = mod.generate().code
