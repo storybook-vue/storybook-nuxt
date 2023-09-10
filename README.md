@@ -6,7 +6,6 @@
 
 Storybook package for [**Nuxt framework**](https://nuxt.com/) with zero configs. seamless integration supporting all Nuxt fancy features 
 
-https://github.com/storybook-vue/nuxt/assets/711292/e66a1899-ab7c-42dd-b358-59e22ff0f609
 
 https://www.veed.io/embed/1f9d58b6-3c76-43a1-a15e-ae95af8dff5f
 
@@ -19,6 +18,12 @@ or  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/sto
 
 - Demo with more plugins [i18n+pinia](https://github.com/chakAs3/nuxt-sb-app) try it on [Stackblitz](https://stackblitz.com/~/github.com/chakAs3/nuxt-sb-app)
 - Full Demo [i18n, Pinia, Composables,Vuetify,and Routing](https://github.com/storybook-vue/storybook-nuxt-starter)  try it on [Stackblitz](https://stackblitz.com/~/github.com/storybook-vue/storybook-nuxt-starter)
+
+## Storybook module for setup:
+
+[Storybook Nuxt-Module](https://github.com/storybook-vue/nuxt-storybook)
+
+[Storybook Nuxt-Module Demo](https://github.com/chakAs3/nuxt-storybook-module-demo)
 
 ## Supported Features
 
