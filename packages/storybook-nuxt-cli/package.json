@@ -20,7 +20,7 @@
     "stub": "unbuild --stub",
     "dev:prepare": "stub && build && test",
     "dev": "build && test",
-    "prepublishOnly": "pnpm run build",
+    "prepack": "unbuild",
     "test": "cd playground &&  node ../index.mjs init "
   },
   "dependencies": {
