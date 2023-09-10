@@ -76,15 +76,15 @@ function initStorybook(start = false, port = 6006, ci = true) {
     stdio: 'inherit',
   })
 
-  installProcess.on('close', (code) => {
+  installProcess.on('close', async (code) => {
     if (code !== 0) {
       logger.error(`${CROSSMARK} Package installation failed with code ${code}`)
     }
     else {
       logger.log(`${CHECKMARK} Packages installed successfully!`)
 
-      addScripts()
-      copyTemplateFiles(configFileExtension, path.join(sourceFolder, 'stories'))
+      await addScripts()
+      await copyTemplateFiles(configFileExtension, path.join(sourceFolder, 'stories'))
 
       logger.log()
       logger.log('📕 Storybook is ready to go! 🚀')
