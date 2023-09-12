@@ -19,8 +19,8 @@
     "build": "unbuild",
     "stub": "unbuild --stub",
     "dev:prepare": "stub && build && test",
-    "dev": "build && test",
     "prepack": "unbuild",
+    "dev": "cd playground &&  node ../index.mjs init ",
     "test": "cd playground &&  node ../index.mjs init "
   },
   "dependencies": {

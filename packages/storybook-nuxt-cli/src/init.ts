@@ -6,6 +6,7 @@ import path from 'node:path'
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
+import c from 'picocolors'
 import { addModuleToNuxtConfigFile, updatePackageJsonFile } from './add-module'
 
 // Unicode icons for better display
@@ -89,6 +90,10 @@ function initStorybook(start = false, port = 6006, ci = true) {
       logger.log()
       logger.log('📕 Storybook is ready to go! 🚀')
       logger.log()
+      logger.log('To start Storybook, run:')
+      logger.log()
+      logger.log(`  ${c.blue(`${packageManager} run storybook`)} `)
+      logger.log()
       if (start) {
         const startProcess = spawn(packageManager, ['storybook', 'dev', '--ci', '--port', `${port}`], {
           cwd: projectRoot,
@@ -122,7 +127,11 @@ function detectPackageManager() {
 
 async function addDevDependencies() {
   const devDependencies = {
+    'react': '^18.2.0',
+    'react-dom': '^18.2.0',
     'storybook': 'next',
+    '@types/node': '^18.17.5',
+    '@storybook/vue3': 'next',
     '@storybook-vue/nuxt': 'rc',
     '@storybook-vue/nuxt-storybook': 'rc',
     '@storybook/addon-essentials': 'next',
@@ -131,11 +140,7 @@ async function addDevDependencies() {
     '@storybook/blocks': 'next',
     '@storybook/builder-vite': 'next',
     '@storybook/testing-library': '^0.2.0',
-    '@storybook/vue3': 'next',
     // '@storybook/vue3-vite': 'next',
-    '@types/node': '^18.17.5',
-    'react': '^18.2.0',
-    'react-dom': '^18.2.0',
   }
 
   updatePackageJsonFile(devDependencies)
@@ -215,4 +220,27 @@ async function getPackageDir(frameworkPackageName) {
   throw new Error(`Cannot find ${frameworkPackageName},`)
 }
 
-export { initStorybook }
+async function initNuxtProject() {
+  const startProcess = spawn('npx', ['nuxi', 'init', '.'], {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+  })
+
+  return new Promise<boolean>((resolve, reject) => {
+    startProcess.on('close', (code) => {
+      if (code !== 0) {
+        logger.error(`${CROSSMARK} Nuxt failed to init ${code}`)
+        if (code === 1)
+          resolve(true)
+        else
+          reject(code)
+      }
+      else {
+        logger.log(`${CHECKMARK} Nuxt started successfully!`)
+        resolve(true)
+      }
+    })
+  })
+}
+
+export { initStorybook, initNuxtProject as initNuxt }
