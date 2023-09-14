@@ -12,8 +12,8 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "@storybook-vue/nuxt": "rc",
-    "@storybook-vue/nuxt-storybook": "rc",
+    "@storybook-vue/nuxt": "latest",
+    "@storybook-vue/nuxt-storybook": "latest",
     "@storybook/addon-essentials": "next",
     "@storybook/addon-interactions": "next",
     "@storybook/addon-links": "next",
@@ -22,7 +22,7 @@
     "@storybook/testing-library": "^0.2.0",
     "@storybook/vue3": "next",
     "@types/node": "^18.17.5",
-    "nuxt": "^3.7.1",
+    "nuxt": "^3.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "next"

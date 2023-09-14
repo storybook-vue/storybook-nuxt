@@ -41,16 +41,6 @@ export async function addModuleToNuxtConfigFile(moduleName, cwd) {
       printDiffToCLI(source, generated)
       consola.log('')
 
-      //   const { confirm } = await prompts({
-      //     type: 'confirm',
-      //     name: 'confirm',
-      //     message: 'Continue?',
-      //     initial: false,
-      //   })
-
-      //   if (!confirm)
-      //     return false
-
       await fsp.writeFile(nuxtConfig, `${generated.trimEnd()}\n`, 'utf-8')
     }
   }

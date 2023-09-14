@@ -14,10 +14,8 @@ program
   .action(async (options) => {
     // if current directory is empty, create a new project
     const nuxt = await initNuxt().catch(() => null)
-    if (!nuxt)
-      return
-    // ... perform the initialization ...
-    initStorybook(Boolean(options.start), options.port, options.ci)
+    if (nuxt)
+      initStorybook(Boolean(options.start), options.port, options.ci)
   })
 
 // Parse command-line arguments

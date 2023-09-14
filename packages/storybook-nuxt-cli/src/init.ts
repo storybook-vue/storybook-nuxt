@@ -7,6 +7,7 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSyn
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import c from 'picocolors'
+import { consola } from 'consola'
 import { addModuleToNuxtConfigFile, updatePackageJsonFile } from './add-module'
 
 // Unicode icons for better display
@@ -15,8 +16,9 @@ const CROSSMARK = '\u274C' // ❌
 const STARTMARK = '\u25B6' // ▶
 
 const logger = console
+let packageManager
 
-function initStorybook(start = false, port = 6006, ci = true) {
+async function initStorybook(start = false, port = 6006, ci = true) {
   logger.log(`${STARTMARK} Initializing Storybook configuration...`)
   logger.log()
   // Path to the project root
@@ -67,7 +69,19 @@ function initStorybook(start = false, port = 6006, ci = true) {
   logger.log('Install dependencies 📦️')
   logger.log()
 
-  const packageManager = detectPackageManager()
+  packageManager = detectPackageManager()
+  if (!packageManager) {
+    // Prompt user to select package manager
+    const selectedPackageManager = await consola.prompt<{
+      type: 'select'
+      options: string[]
+    }>('Which package manager would you like to use?', {
+      type: 'select',
+      options: ['npm', 'pnpm', 'yarn', 'bun'],
+    })
+
+    packageManager = selectedPackageManager
+  }
 
   addDevDependencies()
   addModuleToNuxtConfigFile('@storybook-vue/nuxt-storybook', projectRoot)
@@ -122,7 +136,10 @@ function detectPackageManager() {
   else if (existsSync(path.join(process.cwd(), 'pnpm-lock.yaml')))
     return 'pnpm'
 
-  return 'npm'
+  else if (existsSync(path.join(process.cwd(), 'bun.lock')))
+    return 'bun'
+
+  return undefined
 }
 
 async function addDevDependencies() {
@@ -132,14 +149,14 @@ async function addDevDependencies() {
     'storybook': 'next',
     '@types/node': '^18.17.5',
     '@storybook/vue3': 'next',
-    '@storybook-vue/nuxt': 'rc',
-    '@storybook-vue/nuxt-storybook': 'rc',
+    '@storybook-vue/nuxt': 'latest',
+    '@storybook-vue/nuxt-storybook': 'latest',
+    '@storybook/addon-links': 'next',
+    '@storybook/builder-vite': 'next',
     '@storybook/addon-essentials': 'next',
     '@storybook/addon-interactions': 'next',
-    '@storybook/addon-links': 'next',
-    '@storybook/blocks': 'next',
-    '@storybook/builder-vite': 'next',
     '@storybook/testing-library': '^0.2.0',
+    '@storybook/blocks': 'next',
     // '@storybook/vue3-vite': 'next',
   }
 
@@ -242,5 +259,23 @@ async function initNuxtProject() {
     })
   })
 }
+async function installDependencies() {
+  const installProcess = spawn(packageManager, ['install'], {
+    cwd: process.cwd(),
+    stdio: 'inherit',
+  })
+  return new Promise<boolean>((resolve, reject) => {
+    installProcess.on('close', (code) => {
+      if (code !== 0) {
+        logger.error(`${CROSSMARK} Package installation failed with code ${code}`)
+        reject(code)
+      }
+      else {
+        logger.log(`${CHECKMARK} Packages installed successfully!`)
+        resolve(true)
+      }
+    })
+  })
+}
 
-export { initStorybook, initNuxtProject as initNuxt }
+export { initStorybook, initNuxtProject as initNuxt, installDependencies }
