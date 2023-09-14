@@ -18,7 +18,7 @@ const STARTMARK = '\u25B6' // ▶
 const logger = console
 let packageManager
 
-async function initStorybook(start = false, port = 6006, ci = true) {
+async function initStorybook(start = false, port = 6006, ci = true, enableModule = false) {
   logger.log(`${STARTMARK} Initializing Storybook configuration...`)
   logger.log()
   // Path to the project root
@@ -84,7 +84,8 @@ async function initStorybook(start = false, port = 6006, ci = true) {
   }
 
   addDevDependencies()
-  addModuleToNuxtConfigFile('@storybook-vue/nuxt-storybook', projectRoot)
+  if (!enableModule)
+    addModuleToNuxtConfigFile('@storybook-vue/nuxt-storybook', projectRoot)
   // Install required packages using pnpm
   const installProcess = spawn(packageManager, ['install'], {
     cwd: projectRoot,

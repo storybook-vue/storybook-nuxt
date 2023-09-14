@@ -15,6 +15,7 @@
     "cleanup": "rimraf 'packages/**/node_modules' 'node_modules'",
     "dev": "pnpm run stub && pnpm -C packages/storybook-nuxt dev",
     "dev:cli": "pnpm run stub && pnpm -C packages/storybook-nuxt-cli dev",
+    "test:cli": "pnpm -C packages/storybook-nuxt-cli test",
     "lint": "eslint .",
     "release": "pnpm -r publish",
     "test": "pnpm lint",
