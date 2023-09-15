@@ -84,7 +84,7 @@ async function initStorybook(start = false, port = 6006, ci = true, enableModule
   }
 
   addDevDependencies()
-  if (!enableModule)
+  if (enableModule)
     addModuleToNuxtConfigFile('@storybook-vue/nuxt-storybook', projectRoot)
   // Install required packages using pnpm
   const installProcess = spawn(packageManager, ['install'], {
