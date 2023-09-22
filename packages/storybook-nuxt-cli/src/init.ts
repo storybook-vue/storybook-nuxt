@@ -149,16 +149,15 @@ async function addDevDependencies() {
     'react-dom': '^18.2.0',
     'storybook': 'next',
     '@types/node': '^18.17.5',
-    '@storybook/vue3': 'next',
+    '@storybook/vue3': 'latest',
     '@storybook-vue/nuxt': 'latest',
     '@nuxtjs/storybook': 'latest',
-    '@storybook/addon-links': 'next',
-    '@storybook/builder-vite': 'next',
-    '@storybook/addon-essentials': 'next',
-    '@storybook/addon-interactions': 'next',
+    '@storybook/addon-links': 'lastest',
+    '@storybook/builder-vite': 'lastest',
+    '@storybook/addon-essentials': 'lastest',
+    '@storybook/addon-interactions': 'lastest',
     '@storybook/testing-library': '^0.2.0',
-    '@storybook/blocks': 'next',
-    // '@storybook/vue3-vite': 'next',
+    '@storybook/blocks': 'lastest',
   }
 
   updatePackageJsonFile(devDependencies)
