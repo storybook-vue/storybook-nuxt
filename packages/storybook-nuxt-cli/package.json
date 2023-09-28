@@ -21,7 +21,8 @@
     "dev:prepare": "stub && build && test",
     "prepack": "unbuild",
     "dev": "cd playground &&  node ../index.mjs init --enable-module ",
-    "test": "cd playground &&  node ../index.mjs init "
+    "test": "cd playground &&  node ../index.mjs init ",
+    "release": "pnpm changelogen --release --push && pnpm publish"
   },
   "dependencies": {
     "child_process": "^1.0.2",

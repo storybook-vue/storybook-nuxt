@@ -1,5 +1,3 @@
-// import fs = require('node:fs')
-// import path = require('node:path')
 import { spawn } from 'node:child_process'
 import fsp from 'node:fs/promises'
 import path from 'node:path'
@@ -147,10 +145,10 @@ async function addDevDependencies() {
   const devDependencies = {
     'react': '^18.2.0',
     'react-dom': '^18.2.0',
-    'storybook': 'next',
+    'storybook': '7.4.4',
     '@types/node': '^18.17.5',
     '@storybook/vue3': '7.4.4',
-    '@storybook-vue/nuxt': '0.1.1',
+    '@storybook-vue/nuxt': '0.1.4',
     '@nuxtjs/storybook': '7.0.0',
     '@storybook/addon-links': '7.4.4',
     '@storybook/builder-vite': '7.4.4',
