@@ -82,7 +82,8 @@ async function initStorybook(start = false, port = 6006, ci = true, enableModule
   }
 
   addDevDependencies()
-  if (!enableModule)
+  consola.info('🔌 enableModule ', enableModule)
+  if (enableModule)
     addModuleToNuxtConfigFile('@nuxtjs/storybook', projectRoot)
   // Install required packages using pnpm
   const installProcess = spawn(packageManager, ['install'], {
@@ -236,6 +237,11 @@ async function getPackageDir(frameworkPackageName) {
 }
 
 async function initNuxtProject() {
+  const isEmpty = readdirSync(process.cwd()).length === 0
+  if (!isEmpty) {
+    logger.error(' Directory is not empty')
+    return true
+  }
   const startProcess = spawn('npx', ['nuxi', 'init', '.'], {
     cwd: process.cwd(),
     stdio: 'inherit',

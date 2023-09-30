@@ -14,6 +14,7 @@ program
   .option('-c, --ci', 'Run in CI mode') // avoid interactive prompts and browser opening
   .action(async (options) => {
     // if current directory is empty, create a new project
+
     const nuxt = await initNuxt().catch(() => null)
     if (nuxt)
       initStorybook(Boolean(options.start), options.port, options.ci, Boolean(options.enableModule))
