@@ -13,6 +13,10 @@ const CHECKMARK = '\u2714' // ✔
 const CROSSMARK = '\u274C' // ❌
 const STARTMARK = '\u25B6' // ▶
 
+const sbVersion = '7.5.0-alpha.3'
+const nuxtSbVersion = '0.1.5'
+const nuxtSbModuleVersion = '7.0.0'
+
 const logger = console
 let packageManager
 
@@ -146,17 +150,17 @@ async function addDevDependencies() {
   const devDependencies = {
     'react': '^18.2.0',
     'react-dom': '^18.2.0',
-    'storybook': '7.4.4',
+    'storybook': sbVersion,
     '@types/node': '^18.17.5',
-    '@storybook/vue3': '7.4.4',
-    '@storybook-vue/nuxt': '0.1.4',
-    '@nuxtjs/storybook': '7.0.0',
-    '@storybook/addon-links': '7.4.4',
-    '@storybook/builder-vite': '7.4.4',
-    '@storybook/addon-essentials': '7.4.4',
-    '@storybook/addon-interactions': '7.4.4',
+    '@storybook/vue3': sbVersion,
+    '@storybook-vue/nuxt': nuxtSbVersion,
+    '@nuxtjs/storybook': nuxtSbModuleVersion,
+    '@storybook/addon-links': sbVersion,
+    '@storybook/builder-vite': sbVersion,
+    '@storybook/addon-essentials': sbVersion,
+    '@storybook/addon-interactions': sbVersion,
     '@storybook/testing-library': '^0.2.0',
-    '@storybook/blocks': '7.4.4',
+    '@storybook/blocks': sbVersion,
   }
 
   updatePackageJsonFile(devDependencies)
@@ -220,7 +224,6 @@ function copyFolderRecursive(sourceFolder, destinationFolder) {
   }
 }
 
-// Usage example:
 async function getPackageDir(frameworkPackageName) {
 //   const packageJsonPath = join(frameworkPackageName, 'package.json')
 
