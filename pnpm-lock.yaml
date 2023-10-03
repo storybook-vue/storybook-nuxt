@@ -61,16 +61,16 @@ importers:
   packages/storybook-nuxt:
     dependencies:
       '@nuxt/devtools-kit':
-        specifier: latest
-        version: 1.0.0-beta.0(nuxt@3.6.5)(rollup@3.29.4)(vite@4.4.9)
+        specifier: ^0.7.2
+        version: 0.7.2(nuxt@3.6.5)(rollup@3.29.4)(vite@4.4.9)
       '@nuxt/kit':
-        specifier: ^3.6.5
+        specifier: 3.6.5
         version: 3.6.5(rollup@3.29.4)
       '@nuxt/schema':
-        specifier: ^3.6.5
+        specifier: 3.6.5
         version: 3.6.5(rollup@3.29.4)
       '@nuxt/vite-builder':
-        specifier: ^3.6.5
+        specifier: 3.6.5
         version: 3.6.5(@types/node@18.17.5)(eslint@8.50.0)(rollup@3.29.4)(typescript@5.2.2)(vue-tsc@1.8.15)(vue@3.3.4)
       '@storybook/builder-vite':
         specifier: 7.5.0-alpha.3
@@ -2532,6 +2532,22 @@ packages:
   /@nuxt/devalue@2.0.2:
     resolution: {integrity: sha512-GBzP8zOc7CGWyFQS6dv1lQz8VVpz5C2yRszbXufwG/9zhStTIH50EtD87NmWbTMwXDvZLNg8GIpb1UFdH93JCA==}
 
+  /@nuxt/devtools-kit@0.7.2(nuxt@3.6.5)(rollup@3.29.4)(vite@4.4.9):
+    resolution: {integrity: sha512-hY4GWWkEdY68V9YdUn5Cmdxc3IbBP1YPjPs5vkHw+MOv9exlg/KnElDcbNWeWsTKIvlptdimssdh7rXY8ytfgQ==}
+    peerDependencies:
+      nuxt: ^3.6.5
+      vite: '*'
+    dependencies:
+      '@nuxt/kit': 3.6.5(rollup@3.29.4)
+      '@nuxt/schema': 3.6.5(rollup@3.29.4)
+      execa: 7.2.0
+      nuxt: 3.6.5(@types/node@18.17.5)(eslint@8.50.0)(rollup@3.29.4)(typescript@5.2.2)(vue-tsc@1.8.15)
+      vite: 4.4.9(@types/node@18.17.5)
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: false
+
   /@nuxt/devtools-kit@1.0.0-beta.0(nuxt@3.6.5)(rollup@3.29.4)(vite@4.4.9):
     resolution: {integrity: sha512-1B/b8DDY+gjILnTDKLjeF5b1t1+IK61+W7KvMwNTyV7ziiPxD3aOVI5dShnHQhjFd+GU1NGri807cWn7O1tSOw==}
     peerDependencies:
@@ -2546,6 +2562,7 @@ packages:
     transitivePeerDependencies:
       - rollup
       - supports-color
+    dev: true
 
   /@nuxt/devtools-wizard@1.0.0-beta.0:
     resolution: {integrity: sha512-7L7pl/wzipmLukIZM8EQioZW99o90mYUfSnpyORDIdk9raE+ez0agTDkwtCBWnxGc3KerQYTDIULBE2zjcTO3A==}
