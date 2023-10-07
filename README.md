@@ -95,7 +95,7 @@ export default {
 
 ## Documentation
 
-In progress
+check https://storybook.nuxtjs.org/
 
 ## License
 
