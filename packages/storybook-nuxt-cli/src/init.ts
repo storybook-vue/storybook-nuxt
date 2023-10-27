@@ -14,7 +14,7 @@ const CROSSMARK = '\u274C' // ❌
 const STARTMARK = '\u25B6' // ▶
 
 const sbVersion = '7.5.1'
-const nuxtSbVersion = '0.1.8'
+const nuxtSbVersion = '0.1.9'
 const nuxtSbModuleVersion = '7.0.0'
 
 const logger = console
