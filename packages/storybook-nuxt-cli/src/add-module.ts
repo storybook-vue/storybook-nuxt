@@ -2,11 +2,14 @@ import { existsSync } from 'node:fs'
 import fsp from 'node:fs/promises'
 import { relative } from 'node:path'
 import { cwd } from 'node:process'
-import { consola } from 'consola'
+
+// import { consola } from 'consola'
 import c from 'picocolors'
 import { parseModule } from 'magicast'
 import { diffLines } from 'diff'
 import path, { join } from 'pathe'
+
+const consola = console
 
 export async function addModuleToNuxtConfigFile(moduleName, cwd) {
   const nuxtConfig = findNuxtConfig(cwd)
