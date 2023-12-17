@@ -13,8 +13,8 @@ const CHECKMARK = '\u2714' // ✔
 const CROSSMARK = '\u274C' // ❌
 const STARTMARK = '\u25B6' // ▶
 
-const sbVersion = '7.5.1'
-const nuxtSbVersion = '0.1.9'
+const sbVersion = '7.5.3'
+const nuxtSbVersion = '0.2.0'
 const nuxtSbModuleVersion = '7.0.0'
 
 const logger = console
