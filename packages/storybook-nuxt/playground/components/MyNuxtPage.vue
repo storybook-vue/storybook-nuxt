@@ -17,14 +17,14 @@
       active
       color="primary"
     >
-      <v-btn>
+      <v-btn @click="$router.push(`/`)">
         <v-icon>mdi-home</v-icon>
 
         <NuxtLink to="/" class="n-link-base">
           Home
         </NuxtLink>
       </v-btn>
-      <v-btn>
+      <v-btn @click="$router.push(`/about`)">
         <v-icon>mdi-history</v-icon>
 
         <NuxtLink to="/about" class="n-link-base">
@@ -32,7 +32,7 @@
         </NuxtLink>
       </v-btn>
 
-      <v-btn>
+      <v-btn @click="$router.push(`/parent`)">
         <v-icon>mdi-heart</v-icon>
 
         <NuxtLink to="/parent" class="n-link-base">

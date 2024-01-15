@@ -33,7 +33,6 @@ export default defineNuxtPlugin({
 
       getContext(nuxt.globalName).set(nuxt, true)
 
-      nuxt.hooks.callHook('app:created', vueApp)
       for (const plugin of plugins) {
         try {
           if (typeof plugin === 'function' && !plugin.toString().includes('definePayloadReviver'))
@@ -42,6 +41,17 @@ export default defineNuxtPlugin({
         catch (e) {
           logger.error('Error in plugin ', plugin)
         }
+      }
+      try {
+        await nuxt.hooks.callHook('app:created', vueApp)
+        await nuxt.hooks.callHook('app:beforeMount', vueApp)
+        setTimeout(async () => {
+          await nuxt.hooks.callHook('app:mounted', vueApp)
+          // await nextTick()
+        }, 0)
+      }
+      catch (e) {
+        logger.error('Vue Error in plugins ', e)
       }
 
       return nuxt

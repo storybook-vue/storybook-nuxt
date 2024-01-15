@@ -67,9 +67,9 @@
   },
   "dependencies": {
     "@nuxt/devtools-kit": "latest",
-    "@nuxt/kit": "^3.7.4",
-    "@nuxt/schema": "^3.7.4",
-    "@nuxt/vite-builder": "^3.7.4",
+    "@nuxt/kit": "^3.8.1",
+    "@nuxt/schema": "^3.8.1",
+    "@nuxt/vite-builder": "^3.8.1",
     "@storybook/builder-vite": "7.4.4",
     "@storybook/vue3": "7.4.4",
     "@storybook/vue3-vite": "7.4.4",

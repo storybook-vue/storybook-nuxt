@@ -31,7 +31,7 @@ export const Home: Story = {
         useRouter().push('/')
         return { args }
       },
-      template: '<div><MyNuxtPage /></div>',
+      template: '<div> <h1>Pages Story </h1> <MyNuxtPage /></div>',
     })
   },
 }
