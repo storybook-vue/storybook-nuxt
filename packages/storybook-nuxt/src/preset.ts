@@ -91,10 +91,21 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
         { isClient }: any,
       ) => {
         if (isClient) {
-          const plugins = baseConfig.plugins.filter((plugin: any) => plugin.name !== 'vite:vue')
-          baseConfig.plugins = [...plugins,
-            vuePlugin(),
-          ]
+          const plugins = baseConfig.plugins
+
+          // Find the index of the plugin with name 'vite:vue'
+          const index = plugins.findIndex((plugin: any) => plugin.name === 'vite:vue')
+
+          // Check if the plugin was found
+          if (index !== -1) {
+            // Replace the plugin with the new one using vuePlugin()
+            plugins[index] = vuePlugin()
+          }
+          else {
+            // Handle the case where the plugin with name 'vite:vue' was not found
+            console.error('Plugin \'vite:vue\' not found in the array.')
+          }
+          baseConfig.plugins = plugins
           extendedConfig = mergeConfig(config, baseConfig)
         }
       },
