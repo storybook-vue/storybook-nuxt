@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { useRouter } from 'vue-router'
-
 import MyNuxtPage from '~/components/MyNuxtPage.vue'
 
 // More on how to set up stories at: https://storybook.js.org/docs/vue/writing-stories/introduction
@@ -28,10 +26,9 @@ export const Home: Story = {
 
       components: { MyNuxtPage },
       setup() {
-        useRouter().push('/')
         return { args }
       },
-      template: '<div><MyNuxtPage /></div>',
+      template: '<div class="text-center"><h1> Custom PagesNav Story </h1><MyNuxtPage /></div>',
     })
   },
 }

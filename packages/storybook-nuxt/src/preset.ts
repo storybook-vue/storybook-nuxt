@@ -66,12 +66,12 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
 
   let extendedConfig: ViteConfig = {}
   nuxt.options.build.transpile.push(join(packageDir, 'preview'))
+  nuxt.options.build.transpile.push('@storybook-vue/nuxt')
 
   nuxt.hook('modules:done', () => {
     extendComposables(nuxt)
     // Override nuxt-link component to use storybook router
     extendComponents(nuxt)
-    // nuxt.options.build.transpile.push('@storybook-vue/nuxt')
     addPlugin({
       src: join(pluginsDir, 'storybook'),
       mode: 'client',
@@ -89,7 +89,7 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
       (
         config: ViteConfig | PromiseLike<ViteConfig> | Record<string, any>,
         { isClient }: any,
-      ) => {
+      ): void => {
         if (isClient) {
           const plugins = baseConfig.plugins
 

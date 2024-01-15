@@ -5,9 +5,8 @@ defineProps({
 </script>
 
 <template>
+  <h1>Index page</h1>
   <div>
-    Home Storybook
-    Nuxt Image
     <MyNuxtImage />
   </div>
   <div>

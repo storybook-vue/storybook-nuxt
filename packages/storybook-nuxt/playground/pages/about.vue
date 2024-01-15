@@ -5,12 +5,9 @@ defineProps({
 </script>
 
 <template>
-  <div>
-    About Storybook Nuxt Playground with Nuxt Image
-  </div>
+  <h1>About page</h1>
+  <MyNuxtImage />
   <div>
     {{ msg }}
   </div>
-  Nuxt Image
-  <MyNuxtImage />
 </template>
