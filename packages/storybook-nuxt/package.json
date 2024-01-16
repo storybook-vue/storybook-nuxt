@@ -70,9 +70,9 @@
     "@nuxt/kit": "^3.8.1",
     "@nuxt/schema": "^3.8.1",
     "@nuxt/vite-builder": "^3.8.1",
-    "@storybook/builder-vite": "^7.4.4",
-    "@storybook/vue3": "^7.4.4",
-    "@storybook/vue3-vite": "^7.4.4",
+    "@storybook/builder-vite": "^7.6.8",
+    "@storybook/vue3": "^7.6.8",
+    "@storybook/vue3-vite": "^7.6.8",
     "autoprefixer": "^10.4.15",
     "postcss": "^8.4.27",
     "postcss-import": "^15.1.0",
@@ -81,7 +81,7 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@storybook/types": "^7.4.4",
+    "@storybook/types": "^7.6.8",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",
     "changelogen": "^0.5.5"
