@@ -2,7 +2,6 @@ import { createNuxtApp, defineNuxtPlugin } from 'nuxt/app'
 import { getContext } from 'unctx'
 import logger from 'consola'
 
-import type { App } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 // @ts-expect-error virtual file
@@ -24,7 +23,7 @@ export default defineNuxtPlugin({
 
     if (nuxtApp.globalName !== 'nuxt')
       return
-    const applyNuxtPlugins = async (vueApp: App, storyContext: any) => {
+    const applyNuxtPlugins = async (vueApp: any, storyContext: any) => {
       const nuxt = createNuxtApp({ vueApp, globalName: `nuxt-${storyContext.id}` })
       getContext('nuxt-app').set(nuxt, true)
 
