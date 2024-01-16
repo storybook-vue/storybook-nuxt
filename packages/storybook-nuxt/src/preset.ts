@@ -26,8 +26,8 @@ let nuxt: Nuxt
 function extendComponents(nuxt: Nuxt) {
   nuxt.hook('components:extend', (components: any) => {
     const nuxtLink = components.find(({ name }: any) => name === 'NuxtLink')
-    // nuxtLink.filePath = join(runtimeDir, 'components/nuxt-link')
-    // nuxtLink.shortPath = join(runtimeDir, 'components/nuxt-link')
+    nuxtLink.filePath = join(runtimeDir, 'components/nuxt-link')
+    nuxtLink.shortPath = join(runtimeDir, 'components/nuxt-link')
     nuxt.options.build.transpile.push(nuxtLink.filePath)
   })
 }
