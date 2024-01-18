@@ -1,8 +1,6 @@
-import { createNuxtApp, defineNuxtPlugin } from 'nuxt/app'
+import { createNuxtApp, defineNuxtPlugin, useRouter } from 'nuxt/app'
 import { getContext } from 'unctx'
 import logger from 'consola'
-
-import { createRouter, createWebHistory } from 'vue-router'
 
 // @ts-expect-error virtual file
 import plugins from '#build/plugins'
@@ -25,13 +23,12 @@ export default defineNuxtPlugin({
       return
     const applyNuxtPlugins = async (vueApp: any, storyContext: any) => {
       const nuxt = createNuxtApp({ vueApp, globalName: `nuxt-${storyContext.id}` })
-      getContext('nuxt-app').set(nuxt, true)
+      // getContext('nuxt-app').set(nuxt, true)
 
-      const router = nuxtApp.$router ?? createRouter({ history: createWebHistory(), routes: [] })
+      const router = nuxtApp.$router ?? useRouter()
       nuxt.$router = router
 
-      getContext(nuxt.globalName).set(nuxt, true)
-
+      await nuxt.hooks.callHook('app:created', vueApp)
       for (const plugin of plugins) {
         try {
           if (typeof plugin === 'function' && !plugin.toString().includes('definePayloadReviver'))
@@ -42,12 +39,12 @@ export default defineNuxtPlugin({
         }
       }
       try {
-        await nuxt.hooks.callHook('app:created', vueApp)
         await nuxt.hooks.callHook('app:beforeMount', vueApp)
         setTimeout(async () => {
           await nuxt.hooks.callHook('app:mounted', vueApp)
-          // await nextTick()
-        }, 0)
+        // await nextTick()
+        }, 10)
+        getContext(nuxt.globalName).set(nuxt, true)
       }
       catch (e) {
         logger.error('Vue Error in plugins ', e)

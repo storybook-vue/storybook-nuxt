@@ -29,8 +29,8 @@ let nuxt: Nuxt
 function extendComponents(nuxt: Nuxt) {
   nuxt.hook('components:extend', (components: any) => {
     const nuxtLink = components.find(({ name }: any) => name === 'NuxtLink')
-    nuxtLink.filePath = join(runtimeDir, 'components/nuxt-link')
-    nuxtLink.shortPath = join(runtimeDir, 'components/nuxt-link')
+    // nuxtLink.filePath = join(runtimeDir, 'components/nuxt-link')
+    // nuxtLink.shortPath = join(runtimeDir, 'components/nuxt-link')
     nuxt.options.build.transpile.push(nuxtLink.filePath)
   })
 }
@@ -42,9 +42,9 @@ function extendComponents(nuxt: Nuxt) {
  * */
 
 async function extendComposables(nuxt: Nuxt) {
-  const { addImportsSources } = await import(require.resolve('@nuxt/kit'))
+  // const { addImportsSources } = await import(require.resolve('@nuxt/kit'))
   nuxt.options.build.transpile.push(composablesDir)
-  addImportsSources({ imports: ['useRouter'], from: join(composablesDir, 'router') })
+  // addImportsSources({ imports: ['useRouter'], from: join(composablesDir, 'router') })
 }
 
 async function defineNuxtConfig(baseConfig: Record<string, any>) {
@@ -69,10 +69,6 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
 
   nuxt.hook('modules:done', () => {
     extendComposables(nuxt)
-    addPlugin({
-      src: join(pluginsDir, 'storybook'),
-      mode: 'client',
-    })
     // Override nuxt-link component to use storybook router
     extendComponents(nuxt)
     // Add iframe page
@@ -82,11 +78,17 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
         path: '/iframe.html',
       })
     })
+    // Add storybook plugin
+    addPlugin({
+      src: join(pluginsDir, 'storybook'),
+      mode: 'client',
+    })
+    type ViteRecord = Record<string, any>
 
     nuxt.hook(
       'vite:extendConfig',
       (
-        config: ViteConfig | PromiseLike<ViteConfig> | Record<string, any>,
+        config: ViteConfig | PromiseLike<ViteConfig> | ViteRecord,
         { isClient }: any,
       ): void => {
         if (isClient) {
