@@ -1,5 +1,6 @@
 import { createNuxtApp, defineNuxtPlugin, useRouter } from 'nuxt/app'
 import { getContext } from 'unctx'
+import { nextTick } from 'vue'
 import logger from 'consola'
 
 // @ts-expect-error virtual file
@@ -28,7 +29,6 @@ export default defineNuxtPlugin({
       const router = nuxtApp.$router ?? useRouter()
       nuxt.$router = router
 
-      await nuxt.hooks.callHook('app:created', vueApp)
       for (const plugin of plugins) {
         try {
           if (typeof plugin === 'function' && !plugin.toString().includes('definePayloadReviver'))
@@ -39,10 +39,11 @@ export default defineNuxtPlugin({
         }
       }
       try {
+        await nuxt.hooks.callHook('app:created', vueApp)
         await nuxt.hooks.callHook('app:beforeMount', vueApp)
         setTimeout(async () => {
           await nuxt.hooks.callHook('app:mounted', vueApp)
-        // await nextTick()
+          await nextTick()
         }, 10)
         getContext(nuxt.globalName).set(nuxt, true)
       }
