@@ -1,5 +1,5 @@
 <script setup>
-
+const router = useRouter()
 </script>
 
 <template>
@@ -7,7 +7,7 @@
     <NuxtPage />
     <template #footer>
       <div class="text-center p-4 op-50">
-        Current route: <code>{{ $route.path }}</code>
+        Current route: <code>{{ router.path }}</code>
       </div>
     </template>
   </v-container>
@@ -17,14 +17,14 @@
       active
       color="primary"
     >
-      <v-btn @click="$router.push(`/`)">
+      <v-btn @click="router.push(`/`)">
         <v-icon>mdi-home</v-icon>
 
         <NuxtLink to="/" class="n-link-base">
           Home
         </NuxtLink>
       </v-btn>
-      <v-btn @click="$router.push(`/about`)">
+      <v-btn @click="router.push(`/about`)">
         <v-icon>mdi-history</v-icon>
 
         <NuxtLink to="/about" class="n-link-base">
@@ -32,7 +32,7 @@
         </NuxtLink>
       </v-btn>
 
-      <v-btn @click="$router.push(`/parent`)">
+      <v-btn @click="router.push(`/parent`)">
         <v-icon>mdi-heart</v-icon>
 
         <NuxtLink to="/parent" class="n-link-base">
@@ -47,10 +47,10 @@
           Parent (b)
         </NuxtLink>
       </v-btn>
-      <v-btn class="n-link-base" @click="$router.push(`/parent/reload-${(Math.random() * 100).toFixed()}`)">
+      <v-btn class="n-link-base" @click="router.push(`/parent/reload-${(Math.random() * 100).toFixed()}`)">
         Keyed child
       </v-btn>
-      <v-btn class="n-link-base" @click="$router.push(`/parent/static-${(Math.random() * 100).toFixed()}`)">
+      <v-btn class="n-link-base" @click="router.push(`/parent/static-${(Math.random() * 100).toFixed()}`)">
         Non-keyed child
       </v-btn>
     </v-bottom-navigation>
