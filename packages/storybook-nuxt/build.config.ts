@@ -30,6 +30,9 @@ export default defineBuildConfig({
     '@unhead/vue',
     '@nuxt/devtools-kit',
     '#app/composables/state',
+    '#build/plugins',
+    '#build/paths',
+    '#build/fetch',
 
   ],
   failOnWarn: false,

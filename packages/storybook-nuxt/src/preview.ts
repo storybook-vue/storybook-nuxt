@@ -2,6 +2,13 @@ import consola from 'consola'
 import { applyPlugins, createNuxtApp } from 'nuxt/app'
 import { nextTick } from 'vue'
 
+// These files must be imported first as they have side effects:
+// 1. (we set __webpack_public_path via this import, if using webpack builder)
+import '#build/paths.mjs'
+
+// 2. we set globalThis.$fetch via this import
+import '#build/fetch.mjs'
+
 // @ts-expect-error virtual file
 import plugins from '#build/plugins'
 

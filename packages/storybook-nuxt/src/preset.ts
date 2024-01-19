@@ -67,6 +67,8 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
 
   let extendedConfig: ViteConfig = {}
 
+  nuxt.options.build.transpile.push(pluginsDir)
+
   nuxt.hook('modules:done', () => {
     extendComposables(nuxt)
     // Override nuxt-link component to use storybook router
@@ -157,8 +159,10 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
   }
   const nuxtConfig = await defineNuxtConfig(await getStorybookViteConfig(config, options))
 
+  // console.log(nuxtConfig.viteConfig.build?.rollupOptions)
+
   return mergeConfig(nuxtConfig.viteConfig, {
-    build: { rollupOptions: { external: ['vue', 'vue-demi'] } },
+    // build: { rollupOptions: { external: ['vue', 'vue-demi'] } },
     define: {
       __NUXT__: JSON.stringify({ config: nuxtConfig.nuxt.options.runtimeConfig }),
     },
