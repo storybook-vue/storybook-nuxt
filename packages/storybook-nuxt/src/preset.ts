@@ -67,7 +67,7 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
 
   let extendedConfig: ViteConfig = {}
 
-  nuxt.options.build.transpile.push(pluginsDir)
+  nuxt.options.build.transpile.push(runtimeDir)
 
   nuxt.hook('modules:done', () => {
     extendComposables(nuxt)
