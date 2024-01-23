@@ -1,3 +1,3 @@
-import { globalSetup } from './runtime/entry'
+import { useStorybook } from './runtime/composables/storybook'
 
-globalSetup()
+useStorybook()

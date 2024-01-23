@@ -47,9 +47,8 @@ async function applyNuxtPlugins(vueApp: any, storyContext: any) {
   return nuxt
 }
 
-function globalSetup() {
+export function useStorybook() {
   globalWindow.PLUGINS_SETUP_FUNCTIONS ||= new Set()
   globalWindow.PLUGINS_SETUP_FUNCTIONS.add(applyNuxtPlugins)
+  return { applyNuxtPlugins, globalWindow, plugins }
 }
-
-export { applyNuxtPlugins, globalWindow, plugins, globalSetup }
