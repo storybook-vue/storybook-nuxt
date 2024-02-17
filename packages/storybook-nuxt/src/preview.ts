@@ -20,14 +20,7 @@ const globalWindow = window as any
 
 // entry()
 const logger = console
-async function nuxtAppEntry() {
-  const nuxtApp = () => import('#app/entry').then(m => m.default).catch(() => {})
-  // i
-  const vueAppPromise = nuxtApp().catch((_error) => {
-    // consola.error('Error while mounting app:', error)
-  })
-  return vueAppPromise
-}
+
 async function applyNuxtPlugins(vueApp: any, storyContext: any) {
   const nuxt = createNuxtApp({ vueApp, globalName: `nuxt-${storyContext.id}` })
   getContext('nuxt-app').set(nuxt, true)
@@ -62,4 +55,4 @@ async function applyNuxtPlugins(vueApp: any, storyContext: any) {
 globalWindow.PLUGINS_SETUP_FUNCTIONS ||= new Set()
 globalWindow.PLUGINS_SETUP_FUNCTIONS.add(applyNuxtPlugins)
 
-export default nuxtAppEntry
+export default applyNuxtPlugins
