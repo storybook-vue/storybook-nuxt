@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1> My Nuxt App</h1>
+    <h1> Nuxt App</h1>
     <MyNuxtPage />
+
+    <NuxtWelcome msg="Hello from Nuxt" />
   </div>
 </template>

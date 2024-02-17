@@ -5,7 +5,10 @@ onMounted(() => { reloads.value++ })
 </script>
 
 <template>
-  <div>
+  <h4>
     Child reloaded: {{ reloads }}
-  </div>
+  </h4>
+  <p>
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut rerum quas doloribus rem cupiditate libero explicabo. Ullam aspernatur, dignissimos in hic officiis aut reiciendis eos voluptatibus mollitia nemo molestiae nostrum?
+  </p>
 </template>

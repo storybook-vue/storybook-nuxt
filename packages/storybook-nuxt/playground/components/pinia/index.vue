@@ -12,11 +12,18 @@ const counter = useCounter()
 </script>
 
 <template>
-  <div>
+  <div class="storybook">
     <div style="margin: 1rem 0">
       <b>{{ msg }}</b>
       <PiniaLogo />
     </div>
+    <NuxtImg
+      src="/images/sb-nuxt-logo.png"
+      :placeholder="[30, 20]"
+      width="300"
+      height="200"
+      class="rounded"
+    />
 
     <p>
       This is an example store to test out devtools. Try one of the following

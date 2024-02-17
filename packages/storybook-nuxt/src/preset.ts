@@ -1,5 +1,6 @@
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
 import type { PresetProperty } from '@storybook/types'
 import { type UserConfig as ViteConfig, mergeConfig, searchForWorkspaceRoot } from 'vite'
 import type { Nuxt } from '@nuxt/schema'
@@ -52,7 +53,7 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
   nuxt = await loadNuxt({
     rootDir: baseConfig.root,
     ready: false,
-    dev: false,
+    dev: true,
     overrides: {
       ssr: false,
       target: 'static',
@@ -78,9 +79,10 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
       pages.push({
         name: 'storybook-iframe',
         path: '/iframe.html',
+        redirect: '/',
       })
     })
-    // Add storybook plugin
+
     addPlugin({
       src: join(pluginsDir, 'storybook'),
       mode: 'client',
@@ -162,7 +164,7 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
   // console.log(nuxtConfig.viteConfig.build?.rollupOptions)
 
   return mergeConfig(nuxtConfig.viteConfig, {
-    build: { rollupOptions: { external: ['vue', 'vue-demi', '#build/css'] } },
+    build: { rollupOptions: { external: ['vue', 'vue-demi'] } },
     define: {
       __NUXT__: JSON.stringify({ config: nuxtConfig.nuxt.options.runtimeConfig }),
     },
@@ -174,8 +176,46 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
       preventAssignment: true,
     })],
     server: {
+      cors: true,
+      proxy: {
+        ...getPreviewProxy(),
+        ...getNuxtProxyConfig(nuxt).proxy,
+      },
       fs: { allow: [searchForWorkspaceRoot(process.cwd()), ...dirs] },
+    },
+    preview: {
+      headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*' },
     },
     envPrefix: ['NUXT_'],
   })
+}
+export function getNuxtProxyConfig(nuxt: Nuxt) {
+  const port = nuxt.options.runtimeConfig.public.port ?? 3000
+  const route = '^/(_nuxt|_ipx|_icon|__nuxt_devtools__)'
+  const proxy = {
+    [route]:
+    {
+      target: `http://localhost:${port}`,
+      changeOrigin: true,
+      secure: false,
+      ws: true,
+    },
+  }
+  return {
+    port,
+    route,
+    proxy,
+  }
+}
+
+function getPreviewProxy() {
+  return {
+    '/__storybook_preview__': {
+      target: '/',
+      changeOrigin: false,
+      secure: false,
+      rewrite: (path: string) => path.replace('/__storybook_preview__', ''),
+      ws: true,
+    },
+  }
 }
