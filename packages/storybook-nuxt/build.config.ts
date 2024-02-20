@@ -19,6 +19,7 @@ export default defineBuildConfig({
   dependencies: [
     'vue-router',
     'vue',
+    'nuxt',
   ],
   externals: [
     'nuxt',
@@ -29,10 +30,6 @@ export default defineBuildConfig({
     '@vue/shared',
     '@unhead/vue',
     '@nuxt/devtools-kit',
-    '#app/composables/state',
-    '#build/css',
-    '#build/fetch',
-    '#build/paths',
   ],
   failOnWarn: false,
 })

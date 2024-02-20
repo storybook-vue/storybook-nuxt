@@ -1,6 +1,7 @@
 import consola from 'consola'
 import { applyPlugins, createNuxtApp } from 'nuxt/app'
 import { nextTick } from 'vue'
+import { getContext } from 'unctx'
 
 // These files must be imported first as they have side effects:
 // 1. (we set __webpack_public_path via this import, if using webpack builder)
@@ -12,13 +13,11 @@ import '#build/fetch.mjs'
 // @ts-expect-error virtual file
 import plugins from '#build/plugins'
 
-import '#build/css'
-
 const globalWindow = window as any
 
 async function applyNuxtPlugins(vueApp: any, storyContext: any) {
   const nuxt = createNuxtApp({ vueApp, globalName: `nuxt-${storyContext.id}` })
-
+  getContext('nuxt-app').set(nuxt, true)
   async function handleVueError(err: any) {
     await nuxt.callHook('app:error', err)
     nuxt.payload.error = (nuxt.payload.error || err) as any
