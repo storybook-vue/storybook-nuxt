@@ -43,9 +43,9 @@ function extendComponents(nuxt: Nuxt) {
  * */
 
 async function extendComposables(nuxt: Nuxt) {
-  // const { addImportsSources } = await import(require.resolve('@nuxt/kit'))
+  const { addImportsDir } = await import(require.resolve('@nuxt/kit'))
   nuxt.options.build.transpile.push(composablesDir)
-  // addImportsSources({ imports: ['useRouter'], from: join(composablesDir, 'router') })
+  addImportsDir(composablesDir)
 }
 
 async function defineNuxtConfig(baseConfig: Record<string, any>) {
