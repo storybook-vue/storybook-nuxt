@@ -40,7 +40,7 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
   nuxt = await loadNuxt({
     rootDir: baseConfig.root,
     ready: false,
-    dev: true,
+    dev: false,
     overrides: {
       ssr: false,
       target: 'static',
@@ -55,9 +55,8 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
 
   let extendedConfig: ViteConfig = {}
 
-  nuxt.options.build.transpile.push(resolve(packageDir, 'preview'))
-
   nuxt.hook('modules:done', () => {
+    nuxt.options.build.transpile.push(resolve(packageDir, 'preview'))
     // Override nuxt-link component to use storybook router
     extendComponents(nuxt)
     // Add iframe page
@@ -146,7 +145,7 @@ export const viteFinal: StorybookConfig['viteFinal'] = async (
   const nuxtConfig = await defineNuxtConfig(await getStorybookViteConfig(config, options))
 
   return mergeConfig(nuxtConfig.viteConfig, {
-    // build: { rollupOptions: { external: ['vue', 'vue-demi'] } },
+    build: { rollupOptions: { external: ['vue', 'vue-demi'] } },
     define: {
       __NUXT__: JSON.stringify({ config: nuxtConfig.nuxt.options.runtimeConfig }),
     },
