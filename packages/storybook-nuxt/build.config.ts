@@ -29,9 +29,6 @@ export default defineBuildConfig({
     '@vue/shared',
     '@unhead/vue',
     '@nuxt/devtools-kit',
-    '#build/paths.mjs',
-    '#build/fetch.mjs',
-    '#build/plugins',
   ],
   failOnWarn: false,
 })
