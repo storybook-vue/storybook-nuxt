@@ -17,9 +17,8 @@ const distDir = resolve(fileURLToPath(
 const runtimeDir = resolve(distDir, 'runtime')
 const pluginsDir = resolve(runtimeDir, 'plugins')
 const componentsDir = resolve(runtimeDir, 'components')
-const composablesDir = resolve(runtimeDir, 'composables')
 
-const dirs = [distDir, packageDir, pluginsDir, componentsDir, composablesDir]
+const dirs = [distDir, packageDir, pluginsDir, componentsDir]
 
 let nuxt: Nuxt
 
@@ -34,18 +33,6 @@ function extendComponents(nuxt: Nuxt) {
     // nuxtLink.shortPath = join(runtimeDir, 'components/nuxt-link')
     nuxt.options.build.transpile.push(nuxtLink.filePath)
   })
-}
-
-/**
- * extend composables to override router ( fix undefined router  useNuxtApp )
- *
- * @param nuxt
- * */
-
-async function extendComposables(nuxt: Nuxt) {
-  const { addImportsDir } = await import(require.resolve('@nuxt/kit'))
-  nuxt.options.build.transpile.push(composablesDir)
-  addImportsDir(composablesDir)
 }
 
 async function defineNuxtConfig(baseConfig: Record<string, any>) {
@@ -68,11 +55,9 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
 
   let extendedConfig: ViteConfig = {}
 
-  nuxt.options.build.transpile.push(resolve(composablesDir, 'storybook'))
   nuxt.options.build.transpile.push(resolve(packageDir, 'preview'))
 
   nuxt.hook('modules:done', () => {
-    extendComposables(nuxt)
     // Override nuxt-link component to use storybook router
     extendComponents(nuxt)
     // Add iframe page
@@ -122,8 +107,6 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
 
   try {
     await buildNuxt(nuxt)
-
-    // nuxt.options.dev = true
 
     return {
       viteConfig: extendedConfig,
