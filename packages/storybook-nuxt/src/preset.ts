@@ -68,9 +68,8 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
 
   let extendedConfig: ViteConfig = {}
 
-  nuxt.options.build.transpile.push(runtimeDir)
+  nuxt.options.build.transpile.push(resolve(composablesDir, 'storybook'))
   nuxt.options.build.transpile.push(resolve(packageDir, 'preview'))
-  nuxt.options.build.transpile.push('@storybook-vue/nuxt')
 
   nuxt.hook('modules:done', () => {
     extendComposables(nuxt)

@@ -27,7 +27,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.40.3",
     "@storybook-vue/nuxt": "workspace:*",
-    "@types/node": "^16.18.82",
+    "@types/node": "^16.18.83",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.56.0",
