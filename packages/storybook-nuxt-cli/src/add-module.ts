@@ -104,7 +104,7 @@ export async function updatePackageJsonFile(devDependencies) {
 
     const packageJson = source ? JSON.parse(source) : {}
 
-    packageJson.devDependencies ||= []
+    packageJson.devDependencies ||= {}
     if (typeof packageJson.devDependencies === 'object') {
       for (const [name, version] of Object.entries(devDependencies))
         packageJson.devDependencies[name] = version
