@@ -13,8 +13,8 @@ const CHECKMARK = '\u2714' // ✔
 const CROSSMARK = '\u274C' // ❌
 const STARTMARK = '\u25B6' // ▶
 
-const sbVersion = '7.6.7'
-const nuxtSbVersion = '0.2.1'
+const sbVersion = '8.0.0'
+const nuxtSbVersion = '0.2.3'
 const nuxtSbModuleVersion = '7.0.0'
 
 const logger = console
@@ -148,8 +148,6 @@ function detectPackageManager() {
 
 async function addDevDependencies() {
   const devDependencies = {
-    'react': '^18.2.0',
-    'react-dom': '^18.2.0',
     'storybook': sbVersion,
     '@types/node': '^18.17.5',
     '@storybook/vue3': sbVersion,
