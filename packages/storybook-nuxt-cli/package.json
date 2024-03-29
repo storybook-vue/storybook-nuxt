@@ -1,6 +1,6 @@
 {
   "name": "storybook-nuxt",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Storybook init CLI for Nuxt ",
   "author": "Chakas@",
   "license": "ISC",

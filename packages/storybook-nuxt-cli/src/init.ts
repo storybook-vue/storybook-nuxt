@@ -13,9 +13,9 @@ const CHECKMARK = '\u2714' // ✔
 const CROSSMARK = '\u274C' // ❌
 const STARTMARK = '\u25B6' // ▶
 
-const sbVersion = '8.0.0'
-const nuxtSbVersion = '0.2.5'
-const nuxtSbModuleVersion = '7.0.0'
+const sbVersion = '8.0.3'
+const nuxtSbVersion = '0.2.6'
+const nuxtSbModuleVersion = '7.0.2'
 
 const logger = console
 let packageManager
