@@ -157,7 +157,7 @@ async function addDevDependencies() {
     '@storybook/builder-vite': sbVersion,
     '@storybook/addon-essentials': sbVersion,
     '@storybook/addon-interactions': sbVersion,
-    '@storybook/testing-library': '^0.2.0',
+    '@storybook/test': sbVersion,
     '@storybook/blocks': sbVersion,
   }
 
