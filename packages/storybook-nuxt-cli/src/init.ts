@@ -13,7 +13,7 @@ const CHECKMARK = '\u2714' // ✔
 const CROSSMARK = '\u274C' // ❌
 const STARTMARK = '\u25B6' // ▶
 
-const sbVersion = '8.0.3'
+const sbVersion = '8.0.8'
 const nuxtSbVersion = '0.2.6'
 const nuxtSbModuleVersion = '7.0.2'
 
@@ -157,7 +157,7 @@ async function addDevDependencies() {
     '@storybook/builder-vite': sbVersion,
     '@storybook/addon-essentials': sbVersion,
     '@storybook/addon-interactions': sbVersion,
-    '@storybook/testing-library': '^0.2.0',
+    '@storybook/test': sbVersion,
     '@storybook/blocks': sbVersion,
   }
 
