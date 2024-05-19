@@ -53,7 +53,6 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
     ready: false,
     dev: false,
 
-
     overrides: {
       buildDir: '.nuxt-storybook',
     },
@@ -90,7 +89,9 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
         { isClient }: any,
       ) => {
         if (isClient) {
-          const plugins = baseConfig.plugins
+          extendedConfig = mergeConfig(config, baseConfig)
+
+          const plugins = extendedConfig.plugins || []
 
           // Find the index of the plugin with name 'vite:vue'
           const index = plugins.findIndex((plugin: any) => plugin.name === 'vite:vue')
@@ -101,10 +102,10 @@ async function defineNuxtConfig(baseConfig: Record<string, any>) {
             plugins[index] = vuePlugin()
           }
           else {
-            plugins.push(vuePlugin())
+            plugins.unshift(vuePlugin())
           }
-          baseConfig.plugins = plugins
-          extendedConfig = mergeConfig(config, baseConfig)
+
+          extendedConfig.plugins = plugins
         }
       },
     )
